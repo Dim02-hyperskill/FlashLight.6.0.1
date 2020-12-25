@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">FlashLight</string>
+    <string name="error_message">Camera flash is not availablet</string>
+    <string name="error_title">Error! No Flash!</string>
+    <string name="exit_message">Exit</string>
+    <string name="about">About</string>
+    <string name="get_version">Current version number:</string>
+    <string name="timer">Timer</string>
+    <string name="battery_charge">battery charge</string>
+    <string name="temperature_battery">t° battery</string>
+    <string name="set_timer_time">Set the timer time</string>
+    <string name="turn_start">Turn on the Flashlight when the application starts</string>
+    <string name="turn_timer_start">Turn on the Timer when the application starts</string>
+    <string name="timer_pref">Press to set the timer</string>
+    <string name="disable_screen_lock">Disable screen lock</string>
+    <string name="not_turn_is_locked">The flashlight does not turn \\n off when the screen is locked!</string>
+
+
+    <string name="description_about">\???? Decription</string>
+
+    <string name="description_user_manual">When you first launch the app, the LED flashlight and timer are disabled by default.</string>
+
+    <string name="my_link"> </string>
+    <string name="not_turn_is_locked_img">not_turn_is_locked</string>
+    <string name="arrows_rotate_img">arrows rotate image</string>
+
+
+</resources>

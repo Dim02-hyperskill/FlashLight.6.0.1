@@ -122,7 +122,8 @@ public class MainActivity extends AppCompatActivity {
                     mTorchOnOffButton.setImageResource(R.drawable.fl_off);
                     turnOffFlash();
                     myCountDownTimer.cancel();
-                    mTvTimerOn.setText("" + seconds);
+                    String a = Integer.toString(seconds);
+                    mTvTimerOn.setText(a);
                 }
             }
         });
@@ -131,13 +132,14 @@ public class MainActivity extends AppCompatActivity {
         mTimerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String a = Integer.toString(seconds);
                 if (isChecked) {
                     startTimer();
                     isTimerOn = true;
-                    mTvTimerOn.setText(seconds + "");
+                    mTvTimerOn.setText(a);
                 } else {
                     isTimerOn = false;
-                    mTvTimerOn.setText(seconds + "");
+                    mTvTimerOn.setText(a);
                     myCountDownTimer.cancel();
                 }
             }
@@ -145,7 +147,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void startTimer () {
-        mTvTimerOn.setText("" + seconds);
+        String a = Integer.toString(seconds);
+        mTvTimerOn.setText(a);
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
         if(isTorchOn){
             myCountDownTimer.start();

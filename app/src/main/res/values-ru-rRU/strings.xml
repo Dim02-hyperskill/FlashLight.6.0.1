@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Фонарик</string>
+    <string name="exit_message">Вспышка камеры недоступна</string>
+    <string name="error_title">Ошибка! Нет вспышки!</string>
+    <string name="about">О программе</string>
+    <string name="get_version">"Номер текущей версии: "</string>
+    <string name="timer">Таймер</string>
+    <string name="battery_charge">Заряд батареи</string>
+    <string name="temperature_battery">Температура батареи</string>
+    <string name="set_timer_time">Установите время таймера</string>
+    <string name="turn_timer_start">Вкл. таймер при старте приложения</string>
+    <string name="turn_start">Вкл. фонар. при старте приложения</string>
+    <string name="timer_pref">Нажмите для установки таймера</string>
+    <string name="disable_screen_lock">Отключить блокировку экрана</string>
+    <string name="not_turn_is_locked">При блокировке экрана фонарик не выключается!</string>
+    <string name="my_link"><![CDATA[<a href="https://rugraphics.ru/photoshop/fonarik-dlya-smatrfona-android">Ссылка на описание приложения.</a>]]></string>
+    <string name="description_user_manual">При первом запуске приложения светодиодный фонарик и таймер по умолчанию отключёны.</string>
+    <string name="error_message">Вспышка камеры недоступна</string>
+    <string name="not_turn_is_locked_img">not_turn_is_locked</string>
+    <string name="description_about">\??? Описание</string>
+
+</resources>
