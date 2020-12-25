@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:theme="@style/myThemeRotate"
+    tools:context=".RotateActivity">
+
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:contentDescription="@string/arrows_rotate_img"
+        android:layout_width="347dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        app:srcCompat="@drawable/arrows" />
+
+</FrameLayout>
