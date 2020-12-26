@@ -84,7 +84,7 @@
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginTop="24dp"
-        android:background="@drawable/settings"
+        android:background="@drawable/settings_stroke"
         android:onClick="onClickSetting"
         app:layout_constraintStart_toStartOf="@+id/about"
         app:layout_constraintTop_toBottomOf="@+id/about"
@@ -98,7 +98,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:background="@drawable/info"
+        android:background="@drawable/info_stroke"
         android:onClick="onClickAbout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.947"
@@ -110,7 +110,7 @@
 
     <TextView
         android:id="@+id/tv_bat_tint"
-        android:layout_width="92dp"
+        android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginStart="28dp"
         android:text="@string/battery_charge"
@@ -121,19 +121,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.186" />
 
-    <TextView
-        android:id="@+id/tv_bat_vol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="#428634"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_bat_tint"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.004"
-        app:layout_constraintStart_toEndOf="@+id/tv_bat_tint"
-        app:layout_constraintTop_toTopOf="@+id/tv_bat_tint"
-        tools:ignore="RtlHardcoded" />
-
-   <!-- <TextView
+    <!-- <TextView
         android:id="@+id/tv_term_tint"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -160,18 +148,29 @@
         app:layout_constraintLeft_toRightOf="@+id/tv_term_tint"
         tools:ignore="RtlHardcoded" />
 -->
+
+    <TextView
+        android:id="@+id/tv_bat_vol"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#428634"
+        app:layout_constraintBottom_toBottomOf="@+id/tv_bat_tint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.044"
+        app:layout_constraintStart_toEndOf="@+id/tv_bat_tint"
+        app:layout_constraintTop_toTopOf="@+id/tv_bat_tint"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlHardcoded" />
+
     <ImageButton
         android:id="@+id/screen_light"
         android:layout_width="43dp"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/screen_flash"
+        android:background="@drawable/screen_flash_stroke"
         android:onClick="onClickScreenLight"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.875"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -183,10 +182,7 @@
         android:layout_width="48dp"
         android:layout_height="48dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="46dp"
-        android:layout_marginTop="0dp"
-        android:background="@drawable/rotation"
+        android:background="@drawable/rotation_stroke"
         android:onClick="onClickRotate"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintHorizontal_bias="0.107"

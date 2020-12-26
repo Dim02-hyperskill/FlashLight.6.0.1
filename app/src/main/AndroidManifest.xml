@@ -27,14 +27,14 @@
 
         </activity>
 
-        <activity android:name=".PrefActivity" />
+        <activity android:name=".PrefActivity"
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".RotateActivity"
             android:theme="@style/myThemeRotate"/>
 
         <activity android:name=".ScreenLightActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait"/>
 
         <activity android:name=".AboutActivity"
             android:screenOrientation="portrait"/>
