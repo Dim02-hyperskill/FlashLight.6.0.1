@@ -8,31 +8,23 @@ import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.util.Log;
+//import android.util.Log;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 public class RotateActivity extends AppCompatActivity {
-
-
-    private Boolean flagKeepScreenOn;
     SharedPreferences sp;   // для Активити настроек
-    private CameraManager mCameraManager;  // камера Для версии выше api-22
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rotate);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
-
         // Это чтобы экран не гас
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-
         // это скрывает статус бар
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
     }
 
 
@@ -40,23 +32,19 @@ public class RotateActivity extends AppCompatActivity {
     private boolean getScreenOrientation() {
         if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
             return true; //"Портретная ориентация"
-        else if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE)
-            return false;// "Альбомная ориентация"
-        else
-            return true;
+        else return getResources().getConfiguration().orientation != Configuration.ORIENTATION_LANDSCAPE;// "Альбомная ориентация"
     }
 
 
     @Override
     protected void onResume() {
         super.onResume();
-        Log.d("FlashLightActivity", "старт в ROTATE   onResume() ");
-        flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
+        //Log.d("FlashLightActivity", "старт в ROTATE   onResume() ");
+        boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
 
         if (flagKeepScreenOn) {    // Отключена блокировка экрана
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
-
         if (getScreenOrientation()) {
             turnOnFlash();
         }
@@ -71,7 +59,7 @@ public class RotateActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        turnOffFlash();;
+        turnOffFlash();
     }
 
     @Override
@@ -80,11 +68,9 @@ public class RotateActivity extends AppCompatActivity {
         turnOffFlash();
     }
 
-
-
     private void turnOnFlash() {
         CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        String cameraId = null; // Usually back camera is at 0 position.
+        String cameraId; // Usually back camera is at 0 position.
         try {
             cameraId = camManager.getCameraIdList()[0];
             camManager.setTorchMode(cameraId, true);   //Turn ON
@@ -95,7 +81,7 @@ public class RotateActivity extends AppCompatActivity {
 
     private void turnOffFlash() {
         CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        String cameraId = null; // Usually back camera is at 0 position.
+        String cameraId; // Usually back camera is at 0 position.
         try {
             cameraId = camManager.getCameraIdList()[0];
             camManager.setTorchMode(cameraId, false);   //Turn OFF
@@ -112,5 +98,4 @@ public class RotateActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
-
 }
