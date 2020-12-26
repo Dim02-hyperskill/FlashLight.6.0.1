@@ -12,8 +12,8 @@ public class PrefActivity extends PreferenceActivity {
         //setContentView(R.layout.activity_pref);
         addPreferencesFromResource(R.xml.pref);
         //addContentView(R.xml.pref);
+        //addContentView(R.xml.pref);
     }
-
 }
 
 
