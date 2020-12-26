@@ -80,26 +80,23 @@ public class MainActivity extends AppCompatActivity {
 
 
         // region Сенсорная Кнопка
-        mIbTorch_touch.setOnTouchListener(new View.OnTouchListener(){
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN: // нажатие
-                        if (!isTorchOn) {
-                            mIbTorch_touch.setImageResource(R.drawable.tap_tapping);
-                            turnOnFlash();
-                        }
-                        break;
-                    case MotionEvent.ACTION_UP: // отпускание
-                        v.performClick();
-                        if (!isTorchOn) {
-                            mIbTorch_touch.setImageResource(R.drawable.tap);
-                            turnOffFlash();
-                        }
-                        break;
-                }
-                return true;
+        mIbTorch_touch.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: // нажатие
+                    if (!isTorchOn) {
+                        mIbTorch_touch.setImageResource(R.drawable.tap_tapping);
+                        turnOnFlash();
+                    }
+                    break;
+                case MotionEvent.ACTION_UP: // отпускание
+                    v.performClick();
+                    if (!isTorchOn) {
+                        mIbTorch_touch.setImageResource(R.drawable.tap);
+                        turnOffFlash();
+                    }
+                    break;
             }
+            return true;
         });
         // endregion
 
