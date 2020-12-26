@@ -59,13 +59,13 @@
 
     <androidx.appcompat.widget.SwitchCompat
         android:id="@+id/timer_switch"
-        android:layout_width="168dp"
+        android:layout_width="180dp"
         android:layout_height="37dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:checked="true"
-        android:switchMinWidth="105dp"
-        android:switchPadding="20dp"
+        android:switchMinWidth="110dp"
+        android:switchPadding="100dp"
         android:text="@string/timer"
         android:textColor="#ddd"
         android:textSize="23sp"
@@ -110,12 +110,11 @@
 
     <TextView
         android:id="@+id/tv_bat_tint"
-        android:textColor="@color/actionBar_background"
         android:layout_width="92dp"
         android:layout_height="19dp"
         android:layout_marginStart="28dp"
-        android:layout_marginEnd="8dp"
         android:text="@string/battery_charge"
+        android:textColor="#ddd"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
