@@ -13,6 +13,7 @@ public class PrefActivity extends PreferenceFragmentCompat {
        // addPreferencesFromResource(R.xml.pref);
         //addContentView(R.xml.pref);
         setPreferencesFromResource(R.xml.pref, rootKey);
+
     }
 }
 
