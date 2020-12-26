@@ -5,8 +5,6 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
-
-import android.content.DialogInterface;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
@@ -22,7 +20,6 @@ import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
-import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -110,40 +107,34 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        mTorchOnOffButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                isTorchOn = !isTorchOn;
-                if (isTorchOn) {
-                    mTorchOnOffButton.setImageResource(R.drawable.fl_on);
-                    turnOnFlash();
-                    if(mTimerSwitch.isChecked()) {
-                        myCountDownTimer.start();
-                    }
-                } else {
-                    mTorchOnOffButton.setImageResource(R.drawable.fl_off);
-                    turnOffFlash();
-                    myCountDownTimer.cancel();
-                    String a = Integer.toString(seconds);
-                    mTvTimerOn.setText(a);
+        mTorchOnOffButton.setOnClickListener(v -> {
+            isTorchOn = !isTorchOn;
+            if (isTorchOn) {
+                mTorchOnOffButton.setImageResource(R.drawable.fl_on);
+                turnOnFlash();
+                if(mTimerSwitch.isChecked()) {
+                    myCountDownTimer.start();
                 }
+            } else {
+                mTorchOnOffButton.setImageResource(R.drawable.fl_off);
+                turnOffFlash();
+                myCountDownTimer.cancel();
+                String a = Integer.toString(seconds);
+                mTvTimerOn.setText(a);
             }
         });
 
         mTimerSwitch.setChecked(isTimerOn);
-        mTimerSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                String a = Integer.toString(seconds);
-                if (isChecked) {
-                    startTimer();
-                    isTimerOn = true;
-                    mTvTimerOn.setText(a);
-                } else {
-                    isTimerOn = false;
-                    mTvTimerOn.setText(a);
-                    myCountDownTimer.cancel();
-                }
+        mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            String a = Integer.toString(seconds);
+            if (isChecked) {
+                startTimer();
+                isTimerOn = true;
+                mTvTimerOn.setText(a);
+            } else {
+                isTimerOn = false;
+                mTvTimerOn.setText(a);
+                myCountDownTimer.cancel();
             }
         });
     }
