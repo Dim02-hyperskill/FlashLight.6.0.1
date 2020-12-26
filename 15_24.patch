@@ -1,0 +1,72 @@
+Index: app/src/main/java/ru/adminrugraphics/flashlight/PrefsFragment.java
+===================================================================
+--- app/src/main/java/ru/adminrugraphics/flashlight/PrefsFragment.java	(revision 7571d5add22323c9ac432505157fbe455a95d71c)
++++ app/src/main/java/ru/adminrugraphics/flashlight/PrefsFragment.java	(revision 7571d5add22323c9ac432505157fbe455a95d71c)
+@@ -1,13 +0,0 @@
+-package ru.adminrugraphics.flashlight;
+-
+-import android.os.Bundle;
+-import android.preference.PreferenceFragment;
+-
+-public static class PrefsFragment extends PreferenceFragment {
+-
+-    @Override
+-    public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
+-        // Load the preferences from an XML resource
+-        setPreferencesFromResource(R.xml.preferences, rootKey);
+-    }
+-}
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_main.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/layout/activity_main.xml	(revision 7571d5add22323c9ac432505157fbe455a95d71c)
++++ app/src/main/res/layout/activity_main.xml	(date 1608976907425)
+@@ -30,7 +30,7 @@
+         android:layout_height="wrap_content"
+         android:background="#00000000"
+         android:contentDescription=""
+-        android:src="@drawable/fl_off"
++        app:srcCompat="@drawable/fl_off"
+         app:layout_constraintBottom_toBottomOf="parent"
+         app:layout_constraintHorizontal_bias="0.506"
+         app:layout_constraintLeft_toLeftOf="parent"
+Index: gradle.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>windows-1251
+===================================================================
+--- gradle.properties	(revision 7571d5add22323c9ac432505157fbe455a95d71c)
++++ gradle.properties	(date 1608977036008)
+@@ -17,4 +17,4 @@
+ android.useAndroidX=true
+ # Automatically convert third-party libraries to use AndroidX
+ android.enableJetifier=true
+-android.enableR8.fullMode=true
+\ No newline at end of file
++android.enableR8.fullMode=true
+Index: app/build.gradle
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/build.gradle	(revision 7571d5add22323c9ac432505157fbe455a95d71c)
++++ app/build.gradle	(date 1608985619135)
+@@ -12,7 +12,6 @@
+         targetSdkVersion 30
+         versionCode 19
+         versionName "4.1.1"
+-
+         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+     }
+ 
+@@ -29,7 +28,6 @@
+ }
+ 
+ dependencies {
+-
+     implementation 'androidx.appcompat:appcompat:1.2.0'
+     implementation 'com.google.android.material:material:1.2.1'
+     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
