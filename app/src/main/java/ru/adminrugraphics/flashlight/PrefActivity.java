@@ -13,6 +13,7 @@ public class PrefActivity extends PreferenceActivity {
         addPreferencesFromResource(R.xml.pref);
         //addContentView(R.xml.pref);
     }
+
 }
 
 

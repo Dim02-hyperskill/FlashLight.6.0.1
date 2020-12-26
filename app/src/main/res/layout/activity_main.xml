@@ -110,6 +110,7 @@
 
     <TextView
         android:id="@+id/tv_bat_tint"
+        android:textColor="@color/actionBar_background"
         android:layout_width="92dp"
         android:layout_height="19dp"
         android:layout_marginStart="28dp"

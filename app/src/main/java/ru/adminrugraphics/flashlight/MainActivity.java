@@ -27,6 +27,8 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.MessageFormat;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton mTorchOnOffButton, mIbTorch_touch;
@@ -162,8 +164,9 @@ public class MainActivity extends AppCompatActivity {
             super(millisInFuture, countDownInterval);
         }
         @Override
-        public void onTick(long millisUntilFinished) {
-            mTvTimerOn.setText(millisUntilFinished / 1000 + "");
+        public void onTick(long m) {
+            String a = Long.toString( m / 1000);
+            mTvTimerOn.setText(a);
         }
         @Override
         public void onFinish() {
@@ -194,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
-        mTvTimerOn.setText("" + seconds);
+        mTvTimerOn.setText(MessageFormat.format("{0}", seconds));
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
 
         if(isTimerOn) {
@@ -276,16 +279,16 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
+    private final BroadcastReceiver mBatInfoReceiver = new BroadcastReceiver() {
         @Override
         public void onReceive(Context c, Intent i) {
             int level = i.getIntExtra("level", 0);
-            int tmp = i.getIntExtra("temperature", 0);
+            //int tmp = i.getIntExtra("temperature", 0);
             TextView tvBat = findViewById(R.id.tv_bat_vol);
             /*TextView tvTerm = findViewById(R.id.tv_term_vol);
             tvTerm.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
             tvTerm.setText(Integer.toString(tmp/10) + "°C");*/
-            tvBat.setText(Integer.toString(level) + "%");
+            tvBat.setText(MessageFormat.format("{0}%", Integer.toString(level)));
             tvBat.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
 
         }
