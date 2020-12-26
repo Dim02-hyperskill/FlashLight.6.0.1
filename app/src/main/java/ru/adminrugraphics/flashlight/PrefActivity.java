@@ -4,16 +4,14 @@ import android.os.Bundle;
 import android.preference.PreferenceActivity;
 
 
-public class PrefActivity extends PreferenceFragmentCompat {
+public class PrefActivity extends PreferenceActivity {
 
     @Override
-    public void onCreatePreferences (Bundle savedInstanceState, String rootKey) {
-        //super.onCreate(savedInstanceState);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_pref);
-       // addPreferencesFromResource(R.xml.pref);
+        addPreferencesFromResource(R.xml.pref);
         //addContentView(R.xml.pref);
-        setPreferencesFromResource(R.xml.pref, rootKey);
-
     }
 }
 
