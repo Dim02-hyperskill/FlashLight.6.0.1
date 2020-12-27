@@ -160,16 +160,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-
         do_not_turn_rotate = true;
-
-        // imageView2.setVisibility(View.INVISIBLE);
-        if(sp.getBoolean("key_block_off", false)){
-            imageView2.setVisibility(View.VISIBLE);
-        }
-        else {
+        if (!sp.getBoolean("key_block_off", false)) {
             imageView2.setVisibility(View.INVISIBLE);
+        } else {
+            imageView2.setVisibility(View.VISIBLE);
         }
 
         boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
@@ -201,7 +196,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
     }
-
     @Override
     protected void onPause() {
         super.onPause();
@@ -214,9 +208,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop() {
         super.onStop();
         blockOff = sp.getBoolean("key_block_off", false);
-        if (!blockOff) {
-            if (do_not_turn_rotate) turnOffFlash();
+        if (!blockOff) if (do_not_turn_rotate) {
+            turnOffFlash();
         }
+
     }
 
     @Override
