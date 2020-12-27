@@ -3,7 +3,6 @@ package ru.adminrugraphics.flashlight;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
 //import android.annotation.SuppressLint; // Это убирает предупреждения
@@ -34,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean isTorchOn;
     private Boolean isTimerOn;
     private Boolean blockOff;
+    private Boolean do_not_turn_rotate; // чтобы не отключать фонарь при запуске активности Rotate
     SharedPreferences sp;   // для Активити настроек
     public int seconds;
     public TextView mTvTimerOn;
@@ -47,12 +47,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-        //AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-
-
         mIbTorch_touch = findViewById(R.id.ib_torch_tap);
         mIbTorch_touch.setImageResource(R.drawable.tap);
         mTorchOnOffButton = findViewById(R.id.ib_torch);
@@ -68,8 +62,6 @@ public class MainActivity extends AppCompatActivity {
         seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
 
-
-
         isCameraFlash = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         if (!isCameraFlash) {
             new AlertDialog.Builder( this)
@@ -79,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert )
                     .show();
         }
-
 
 
         // region Сенсорная Кнопка
@@ -102,9 +93,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
         });
         // endregion
-
-
-
 
 
         mTorchOnOffButton.setOnClickListener(v -> {
@@ -173,6 +161,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
 
+
+        do_not_turn_rotate = true;
+
         // imageView2.setVisibility(View.INVISIBLE);
         if(sp.getBoolean("key_block_off", false)){
             imageView2.setVisibility(View.VISIBLE);
@@ -215,9 +206,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onPause() {
         super.onPause();
         blockOff = sp.getBoolean("key_block_off", false);
-        if(!blockOff){
-            turnOffFlash();
-        }
+        if(!blockOff) turnOffFlash();
         myCountDownTimer.cancel();
     }
 
@@ -226,14 +215,15 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         blockOff = sp.getBoolean("key_block_off", false);
         if (!blockOff) {
-            turnOffFlash();
+            if (do_not_turn_rotate) turnOffFlash();
         }
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        turnOffFlash();
+        if (do_not_turn_rotate) turnOffFlash();
+
     }
 
     private void turnOnFlash() {
@@ -298,6 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickRotate(View view) {
         blockOff = true;
+        do_not_turn_rotate = false;
         Intent intent = new Intent(this, RotateActivity.class);
         startActivity(intent);
         finish();
