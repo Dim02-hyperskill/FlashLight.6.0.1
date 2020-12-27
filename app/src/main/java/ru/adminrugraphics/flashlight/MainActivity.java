@@ -21,6 +21,7 @@ import android.preference.PreferenceManager;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;   // для Активити настроек
     public int seconds;
     public TextView mTvTimerOn;
+   // private EditText mTvTimerOn;
     MyCountDownTimer myCountDownTimer;
     public SwitchCompat mTimerSwitch;
     ImageView imageView2;
@@ -193,10 +195,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart() {
-        super.onStart();
-    }
-    @Override
     protected void onPause() {
         super.onPause();
         blockOff = sp.getBoolean("key_block_off", false);
@@ -211,14 +209,12 @@ public class MainActivity extends AppCompatActivity {
         if (!blockOff) if (do_not_turn_rotate) {
             turnOffFlash();
         }
-
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         if (do_not_turn_rotate) turnOffFlash();
-
     }
 
     private void turnOnFlash() {

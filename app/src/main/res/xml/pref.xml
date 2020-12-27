@@ -21,6 +21,7 @@
         android:defaultValue="30"
         android:dialogTitle="@string/set_timer_time"
         android:ems="3"
+        android:maxLength="3"
         android:inputType="number"
         android:key="key_second"
         android:selectAllOnFocus="true"
