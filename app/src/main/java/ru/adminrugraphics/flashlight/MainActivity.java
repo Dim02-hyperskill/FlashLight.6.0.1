@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.annotation.SuppressLint; // Это убирает предупреждения
+import android.app.Activity;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
@@ -18,9 +19,11 @@ import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
+import android.text.InputType;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -38,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     SharedPreferences sp;   // для Активити настроек
     public int seconds;
     public TextView mTvTimerOn;
-   // private EditText mTvTimerOn;
+   private EditText edText;
     MyCountDownTimer myCountDownTimer;
     public SwitchCompat mTimerSwitch;
     ImageView imageView2;
@@ -56,9 +59,11 @@ public class MainActivity extends AppCompatActivity {
         mTvTimerOn.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
         mTimerSwitch = findViewById(R.id.timer_switch);
         imageView2 = findViewById(R.id.imageView2);
-        SharedPreferences inputSecondsValue;
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
+
+        edText = findViewById(R.id.edText);
+
 
         isTorchOn = sp.getBoolean("key_torch_on", false);
         isTimerOn = sp.getBoolean("key_timer_on", false);
@@ -74,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert )
                     .show();
         }
+
 
 
         // region Сенсорная Кнопка
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
                 myCountDownTimer.cancel();
                 String a = Integer.toString(seconds);
                 mTvTimerOn.setText(a);
+                edText.setText(a);
             }
         });
 
@@ -122,9 +129,11 @@ public class MainActivity extends AppCompatActivity {
                 startTimer();
                 isTimerOn = true;
                 mTvTimerOn.setText(a);
+                edText.setText(a);
             } else {
                 isTimerOn = false;
                 mTvTimerOn.setText(a);
+                edText.setText(a);
                 myCountDownTimer.cancel();
             }
         });
@@ -133,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
     public void startTimer () {
         String a = Integer.toString(seconds);
         mTvTimerOn.setText(a);
+        edText.setText(a);
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
         if(isTorchOn){
             myCountDownTimer.start();
@@ -149,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
         public void onTick(long m) {
             String a = Long.toString( m / 1000);
             mTvTimerOn.setText(a);
+            edText.setText(a);
         }
         @Override
         public void onFinish() {
@@ -157,6 +168,7 @@ public class MainActivity extends AppCompatActivity {
             mTimerSwitch.setChecked(false);
             turnOffFlash();
             mTvTimerOn.setText("0");
+            edText.setText("0");
         }
     }
 
@@ -178,6 +190,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         mTvTimerOn.setText(MessageFormat.format("{0}", seconds));
+        edText.setText(MessageFormat.format("{0}", seconds));
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
 
         if(isTimerOn) {
