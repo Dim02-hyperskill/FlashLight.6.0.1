@@ -64,11 +64,9 @@ public class MainActivity extends AppCompatActivity {
 
         edText = findViewById(R.id.edText);
 
-
         isTorchOn = sp.getBoolean("key_torch_on", false);
         isTimerOn = sp.getBoolean("key_timer_on", false);
         seconds = Integer.parseInt(sp.getString("key_second", "33"));
-
 
         isCameraFlash = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
         if (!isCameraFlash) {
@@ -79,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
                     .setIcon(android.R.drawable.ic_dialog_alert )
                     .show();
         }
-
 
 
         // region Сенсорная Кнопка
@@ -124,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         mTimerSwitch.setChecked(isTimerOn);
         mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            closeKeyboard();
             String a = Integer.toString(seconds);
             if (isChecked) {
                 startTimer();
@@ -148,6 +146,12 @@ public class MainActivity extends AppCompatActivity {
             myCountDownTimer.start();
         }
         myCountDownTimer.onTick(10);
+    }
+
+    public void onClickMainLayout(View view) {
+
+       closeKeyboard();
+
     }
 
 
@@ -299,6 +303,20 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     // endregion
+
+
+        // Скрывает клавиатуру и убипает фокус из edText
+    private void closeKeyboard(){
+        View view = this.getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(),  0);
+        }
+        edText.clearFocus();
+    }
+
+
+
 
 }
 
