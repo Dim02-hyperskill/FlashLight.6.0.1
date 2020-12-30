@@ -167,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
                 edText.setText(a);
                 edText.setEnabled(false);
                 edText.setTextColor(Color.GRAY);
-                if(!edText.getText().toString().equals("0")) {
+                if(edText.getText().toString().equals("0")) {
                     edText.setText("" + loadParam());
                     seconds = loadParam();
                 }
@@ -385,10 +385,10 @@ public class MainActivity extends AppCompatActivity {
         //  edText.setFocusableInTouchMode(true);
         //  edText.setFocusable(true);
 
-        if (edText.getText().toString().equals("")){
+        if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
             edText.setText("" + loadParam());
         } else {
-            if (!edText.getText().toString().equals("0")) saveParams();
+
         }
     }
 
