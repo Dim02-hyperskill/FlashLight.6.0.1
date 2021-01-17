@@ -20,5 +20,6 @@
     <string name="not_turn_is_locked_img">not_turn_is_locked</string>
     <string name="description_about">\??? Описание</string>
     <string name="arrows_rotate_img">arrows rotate image</string>
+    <string name="toast_save_seconds">Вы сохранили значение таймера:</string>
 
 </resources>

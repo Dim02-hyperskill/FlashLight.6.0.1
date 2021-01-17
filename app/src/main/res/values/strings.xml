@@ -14,15 +14,15 @@
     <string name="timer_pref">Press to set the timer</string>
     <string name="disable_screen_lock">Disable screen lock</string>
     <string name="not_turn_is_locked">The flashlight does not turn \\n off when the screen is locked!</string>
-
-
-    <string name="description_about">\???? Decription</string>
-
+    <string name="description_about">\???? Description</string>
     <string name="description_user_manual">When you first launch the app, the LED flashlight and timer are disabled by default.</string>
 
     <string name="my_link"> </string>
     <string name="not_turn_is_locked_img">not_turn_is_locked</string>
     <string name="arrows_rotate_img">arrows rotate image</string>
+
+    <string name="toast_save_seconds">You saved the timer value:</string>
+
 
 
 </resources>

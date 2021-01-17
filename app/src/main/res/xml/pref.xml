@@ -14,7 +14,7 @@
         android:key="key_keep_screen"
         android:title="@string/disable_screen_lock" />
     <CheckBoxPreference
-        android:defaultValue="false"
+        android:defaultValue="true"
         android:key="key_block_off"
         android:title="@string/not_turn_is_locked" />
     <EditTextPreference
