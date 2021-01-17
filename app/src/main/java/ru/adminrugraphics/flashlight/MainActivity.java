@@ -24,10 +24,8 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -47,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     private Boolean do_not_turn_rotate; // чтобы не отключать фонарь при запуске активности Rotate
     SharedPreferences sp, sPref;   // для Активити настроек
     public int seconds;
+    public TextView mTvTimerOn;
     private EditText edText;
     MyCountDownTimer myCountDownTimer;
     public SwitchCompat mTimerSwitch;
@@ -55,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
     final String SAVED_TEXT = "saved_text";
     SharedPreferences.Editor ed;
 
-    //@SuppressLint("ClickableViewAccessibility") // Это убирает предупреждения
+    @SuppressLint("ClickableViewAccessibility") // Это убирает предупреждения
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +62,8 @@ public class MainActivity extends AppCompatActivity {
         mIbTorch_touch = findViewById(R.id.ib_torch_tap);
         mIbTorch_touch.setImageResource(R.drawable.tap);
         mTorchOnOffButton = findViewById(R.id.ib_torch);
-
+        mTvTimerOn = findViewById(R.id.id_timer_on);
+        mTvTimerOn.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
         mTimerSwitch = findViewById(R.id.timer_switch);
         imageView2 = findViewById(R.id.imageView2);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,11 +74,7 @@ public class MainActivity extends AppCompatActivity {
         isTorchOn = sp.getBoolean("key_torch_on", false);
         isTimerOn = sp.getBoolean("key_timer_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
-
-
         seconds = loadParam();
-       // myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
-        edText.setText(MessageFormat.format("{0}", seconds));
 
         // region Сохранение параметра
 
@@ -120,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // region Ввод цифр в таймер
-/*       edText.addTextChangedListener(new TextWatcher() {
+       edText.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
             @Override
@@ -130,82 +126,61 @@ public class MainActivity extends AppCompatActivity {
                 if(!edText.getText().toString().equals("")) {
                     seconds = Integer.parseInt(edText.getText().toString()); // Get value from EditText into variable
                     edText.setSelection(edText.getText().length());
-
+                    //saveParams();
+                }
+                else {
+                    edText.setFocusable(true);
+                    edText.setBackgroundColor(Color.CYAN);
                 }
             }
-        });*/
+        });
         //endregion
 
 
-
-
-        // region Кнопка и переключатель
-        mTorchOnOffButton.setOnClickListener(v -> { // Кнопка
+        mTorchOnOffButton.setOnClickListener(v -> {
             closeKeyboard();
-            String a = Integer.toString(seconds);
             isTorchOn = !isTorchOn;
             if (isTorchOn) {
                 mTorchOnOffButton.setImageResource(R.drawable.fl_on);
                 turnOnFlash();
                 if(mTimerSwitch.isChecked()) {
-                    startTimer();
-                    edText.setText(a);
+                    myCountDownTimer.start();
                 }
-
             } else {
                 mTorchOnOffButton.setImageResource(R.drawable.fl_off);
                 turnOffFlash();
-                if(mTimerSwitch.isChecked()) myCountDownTimer.cancel();
-                edText.setTextColor(Color.WHITE);
-                edText.setEnabled(true);
+                myCountDownTimer.cancel();
+                String a = Integer.toString(seconds);
+                mTvTimerOn.setText(a);
                 edText.setText(a);
-                edText.setEnabled(true);
             }
         });
 
-        mTimerSwitch.setChecked(isTimerOn); // Переключатель
+        mTimerSwitch.setChecked(isTimerOn);
         mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             closeKeyboard();
             String a = Integer.toString(seconds);
             if (isChecked) {
                 startTimer();
                 isTimerOn = true;
+                mTvTimerOn.setText(a);
                 edText.setText(a);
-               // edText.setEnabled(false);
+                edText.setEnabled(false);
+                edText.setTextColor(Color.GRAY);
+                if(!edText.getText().toString().equals("0")) {
+                    edText.setText("" + loadParam());
+                    seconds = loadParam();
+                }
             } else {
                 isTimerOn = false;
                 myCountDownTimer.cancel();
+                mTvTimerOn.setText(a);
                 edText.setText(a);
                 edText.setEnabled(true);
                 edText.setTextColor(Color.WHITE);
             }
         });
-        //endregion
-
-        edText.setOnLongClickListener(v -> {
-            edText.setTextColor(Color.YELLOW);
-
-
-                    // Toast saveValueSecond
-            LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
-            TextView text = (TextView) layout.findViewById(R.id.text);
-            text.setText(R.string.toast_save_seconds);
-            Toast toast = new Toast(getApplicationContext());
-            toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
-            toast.setDuration(Toast.LENGTH_LONG);
-            toast.setView(layout);
-            toast.show();
-                    // КОНЕЦ Toast saveValueSecond
-            closeKeyboard();
-
-
-            return false;
-        });
-
-
     }
-
 
     void saveParams() {
         sPref = getPreferences(MODE_PRIVATE);
@@ -222,6 +197,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void startTimer () {
         String a = Integer.toString(seconds);
+        mTvTimerOn.setText(a);
         edText.setText(a);
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
         if(isTorchOn){
@@ -236,11 +212,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickEdText(View view) {
 
-
-    }
-
-    public void onClickmTorchOnOffButton(View view) {
-
     }
 
 
@@ -251,9 +222,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTick(long m) {
             String a = Long.toString( m / 1000);
+            mTvTimerOn.setText(a);
             edText.setText(a);
-            edText.setEnabled(false);
-            edText.setTextColor(Color.GRAY);
         }
         @Override
         public void onFinish() {
@@ -261,10 +231,9 @@ public class MainActivity extends AppCompatActivity {
             mTorchOnOffButton.setImageResource(R.drawable.fl_off);
             mTimerSwitch.setChecked(false);
             turnOffFlash();
+            mTvTimerOn.setText("0");
             edText.setText("0");
         }
-
-
     }
 
     // region onResume
@@ -272,15 +241,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         do_not_turn_rotate = true;
-        if (isTorchOn) {
-            mTorchOnOffButton.setImageResource(R.drawable.fl_on);
-            turnOnFlash();
-        } else {
-            mTorchOnOffButton.setImageResource(R.drawable.fl_off);
-            turnOffFlash();
-        }
-
-
         if (!sp.getBoolean("key_block_off", false)) {
             imageView2.setVisibility(View.INVISIBLE);
         } else {
@@ -288,25 +248,38 @@ public class MainActivity extends AppCompatActivity {
         }
 
         boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
+       // seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
         if(flagKeepScreenOn) {  // Отключена блокировка экрана
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
+
+        mTvTimerOn.setText(MessageFormat.format("{0}", seconds));
+        edText.setText(MessageFormat.format("{0}", seconds));
+        myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
+
+        if(isTimerOn) {
+            startTimer();
+            mTimerSwitch.setChecked(true);
+        }
+
+        if (isTorchOn) {
+            //Получаем для приложения параметры камеры:
+            mTorchOnOffButton.setImageResource(R.drawable.fl_on);
+            turnOnFlash();
+        } else {
+            mTorchOnOffButton.setImageResource(R.drawable.fl_off);
+            turnOffFlash();
+        }
     }
     // endregion
-
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        seconds = loadParam();
-    }
 
     @Override
     protected void onPause() {
         super.onPause();
         blockOff = sp.getBoolean("key_block_off", false);
         if(!blockOff) turnOffFlash();
+        myCountDownTimer.cancel();
     }
 
     @Override
@@ -321,14 +294,15 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        closeKeyboard();
-       if (do_not_turn_rotate) turnOffFlash();
+        saveParams();
+        if (do_not_turn_rotate) turnOffFlash();
     }
 
     // region Включение/выключение камеры
     private void turnOnFlash() {
         if (isCameraFlash){
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            // String cameraId; // Usually back camera is at 0 position.
             try {
                 String cameraId = camManager.getCameraIdList()[0];
                 camManager.setTorchMode(cameraId, true);   //Turn ON
@@ -341,6 +315,7 @@ public class MainActivity extends AppCompatActivity {
     private void turnOffFlash() {
         if (isCameraFlash){
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            //String cameraId; // Usually back camera is at 0 position.
             try {
                 String cameraId = camManager.getCameraIdList()[0];
                 camManager.setTorchMode(cameraId, false);   //Turn OFF
@@ -350,6 +325,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     // endregion
+
 
     // region  переходы на ддр. Активити и BroadcastReceiver
     public void onClickSetting(View view) {
@@ -395,33 +371,25 @@ public class MainActivity extends AppCompatActivity {
 
     // Скрывает клавиатуру и убирает фокус из edText
     private void closeKeyboard(){
-
-
-        seconds = Integer.parseInt(edText.getText().toString()); // Get value from EditText into variable
-
-
         View view = this.getCurrentFocus(); // Скрывает клавиатуру
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(),  0);
         }
 
-
-        edText.clearFocus(); // Убирает фокус из edText
+        // Убирает фокус из edText
+        // Для убирания фокуса необходимо наличие пустого LinearLayout с android:focusable="true" и android:focusableInTouchMode="true"
+        edText.clearFocus();
         //  edText.setFocusableInTouchMode(false);
         //  edText.setFocusable(false);
         //  edText.setFocusableInTouchMode(true);
         //  edText.setFocusable(true);
 
-        if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+        if (edText.getText().toString().equals("")){
             edText.setText("" + loadParam());
         } else {
-            saveParams();
+            if (!edText.getText().toString().equals("0")) saveParams();
         }
-
-
-
-
     }
 
 
