@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
     private Boolean do_not_turn_rotate; // чтобы не отключать фонарь при запуске активности Rotate
     SharedPreferences sp, sPref;   // для Активити настроек
     public int seconds;
-    public TextView mTvTimerOn;
     private EditText edText;
     MyCountDownTimer myCountDownTimer;
     public SwitchCompat mTimerSwitch;
@@ -62,8 +61,6 @@ public class MainActivity extends AppCompatActivity {
         mIbTorch_touch = findViewById(R.id.ib_torch_tap);
         mIbTorch_touch.setImageResource(R.drawable.tap);
         mTorchOnOffButton = findViewById(R.id.ib_torch);
-        mTvTimerOn = findViewById(R.id.id_timer_on);
-        mTvTimerOn.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
         mTimerSwitch = findViewById(R.id.timer_switch);
         imageView2 = findViewById(R.id.imageView2);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
@@ -74,7 +71,10 @@ public class MainActivity extends AppCompatActivity {
         isTorchOn = sp.getBoolean("key_torch_on", false);
         isTimerOn = sp.getBoolean("key_timer_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
+
+
         seconds = loadParam();
+        edText.setText(MessageFormat.format("{0}", seconds));
 
         // region Сохранение параметра
 
@@ -128,10 +128,6 @@ public class MainActivity extends AppCompatActivity {
                     edText.setSelection(edText.getText().length());
                     //saveParams();
                 }
-                else {
-                    edText.setFocusable(true);
-                    edText.setBackgroundColor(Color.CYAN);
-                }
             }
         });
         //endregion
@@ -140,18 +136,21 @@ public class MainActivity extends AppCompatActivity {
         mTorchOnOffButton.setOnClickListener(v -> {
             closeKeyboard();
             isTorchOn = !isTorchOn;
+            String a = Integer.toString(seconds);
             if (isTorchOn) {
                 mTorchOnOffButton.setImageResource(R.drawable.fl_on);
                 turnOnFlash();
                 if(mTimerSwitch.isChecked()) {
-                    myCountDownTimer.start();
+                    //myCountDownTimer.start();
+                    startTimer();
+                    edText.setText(a);
                 }
             } else {
                 mTorchOnOffButton.setImageResource(R.drawable.fl_off);
                 turnOffFlash();
-                myCountDownTimer.cancel();
-                String a = Integer.toString(seconds);
-                mTvTimerOn.setText(a);
+                if (mTimerSwitch.isChecked()) {
+                    myCountDownTimer.cancel();
+                }
                 edText.setText(a);
             }
         });
@@ -163,18 +162,11 @@ public class MainActivity extends AppCompatActivity {
             if (isChecked) {
                 startTimer();
                 isTimerOn = true;
-                mTvTimerOn.setText(a);
                 edText.setText(a);
-                edText.setEnabled(false);
                 edText.setTextColor(Color.GRAY);
-                if(!edText.getText().toString().equals("0")) {
-                    edText.setText("" + loadParam());
-                    seconds = loadParam();
-                }
             } else {
                 isTimerOn = false;
                 myCountDownTimer.cancel();
-                mTvTimerOn.setText(a);
                 edText.setText(a);
                 edText.setEnabled(true);
                 edText.setTextColor(Color.WHITE);
@@ -197,7 +189,6 @@ public class MainActivity extends AppCompatActivity {
 
     public void startTimer () {
         String a = Integer.toString(seconds);
-        mTvTimerOn.setText(a);
         edText.setText(a);
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
         if(isTorchOn){
@@ -222,8 +213,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onTick(long m) {
             String a = Long.toString( m / 1000);
-            mTvTimerOn.setText(a);
             edText.setText(a);
+            edText.setEnabled(false);
         }
         @Override
         public void onFinish() {
@@ -231,7 +222,6 @@ public class MainActivity extends AppCompatActivity {
             mTorchOnOffButton.setImageResource(R.drawable.fl_off);
             mTimerSwitch.setChecked(false);
             turnOffFlash();
-            mTvTimerOn.setText("0");
             edText.setText("0");
         }
     }
@@ -248,20 +238,19 @@ public class MainActivity extends AppCompatActivity {
         }
 
         boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
-       // seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
         if(flagKeepScreenOn) {  // Отключена блокировка экрана
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
-        mTvTimerOn.setText(MessageFormat.format("{0}", seconds));
+   /*
         edText.setText(MessageFormat.format("{0}", seconds));
         myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
 
-        if(isTimerOn) {
+       if(isTimerOn) {
             startTimer();
             mTimerSwitch.setChecked(true);
-        }
+        }*/
 
         if (isTorchOn) {
             //Получаем для приложения параметры камеры:
@@ -279,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         blockOff = sp.getBoolean("key_block_off", false);
         if(!blockOff) turnOffFlash();
-        myCountDownTimer.cancel();
+       // myCountDownTimer.cancel();
     }
 
     @Override
@@ -302,7 +291,6 @@ public class MainActivity extends AppCompatActivity {
     private void turnOnFlash() {
         if (isCameraFlash){
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            // String cameraId; // Usually back camera is at 0 position.
             try {
                 String cameraId = camManager.getCameraIdList()[0];
                 camManager.setTorchMode(cameraId, true);   //Turn ON
@@ -315,7 +303,6 @@ public class MainActivity extends AppCompatActivity {
     private void turnOffFlash() {
         if (isCameraFlash){
             CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-            //String cameraId; // Usually back camera is at 0 position.
             try {
                 String cameraId = camManager.getCameraIdList()[0];
                 camManager.setTorchMode(cameraId, false);   //Turn OFF
@@ -337,11 +324,7 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onReceive(Context c, Intent i) {
             int level = i.getIntExtra("level", 0);
-            //int tmp = i.getIntExtra("temperature", 0);
             TextView tvBat = findViewById(R.id.tv_bat_vol);
-            /*TextView tvTerm = findViewById(R.id.tv_term_vol);
-            tvTerm.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
-            tvTerm.setText(Integer.toString(tmp/10) + "°C");*/
             tvBat.setText(MessageFormat.format("{0}%", Integer.toString(level)));
             tvBat.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
 
@@ -385,10 +368,10 @@ public class MainActivity extends AppCompatActivity {
         //  edText.setFocusableInTouchMode(true);
         //  edText.setFocusable(true);
 
-        if (edText.getText().toString().equals("")){
-            edText.setText("" + loadParam());
+        if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+           edText.setText("" + loadParam());
         } else {
-            if (!edText.getText().toString().equals("0")) saveParams();
+           // if (!edText.getText().toString().equals("0")) saveParams();
         }
     }
 
