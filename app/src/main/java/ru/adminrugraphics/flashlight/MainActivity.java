@@ -24,8 +24,10 @@ import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -77,8 +79,6 @@ public class MainActivity extends AppCompatActivity {
         edText.setText(MessageFormat.format("{0}", seconds));
 
         // region Сохранение параметра
-
-
         // endregion
 
         // region проверка на наличие камеры
@@ -126,7 +126,6 @@ public class MainActivity extends AppCompatActivity {
                 if(!edText.getText().toString().equals("")) {
                     seconds = Integer.parseInt(edText.getText().toString()); // Get value from EditText into variable
                     edText.setSelection(edText.getText().length());
-                    //saveParams();
                 }
             }
         });
@@ -141,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                 mTorchOnOffButton.setImageResource(R.drawable.fl_on);
                 turnOnFlash();
                 if(mTimerSwitch.isChecked()) {
-                    //myCountDownTimer.start();
                     startTimer();
                     edText.setText(a);
                 }
@@ -158,6 +156,10 @@ public class MainActivity extends AppCompatActivity {
         mTimerSwitch.setChecked(isTimerOn);
         mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             closeKeyboard();
+
+            edText.setFocusableInTouchMode(true);
+            edText.setFocusable(true);
+
             String a = Integer.toString(seconds);
             if (isChecked) {
                 startTimer();
@@ -172,13 +174,42 @@ public class MainActivity extends AppCompatActivity {
                 edText.setTextColor(Color.WHITE);
             }
         });
+
+        edText.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                edText.setTextColor(Color.YELLOW);
+                closeKeyboard();
+                edText.clearFocus();
+                edText.setFocusableInTouchMode(false);
+                edText.setFocusable(false);
+                saveParams();
+
+                LayoutInflater inflater = getLayoutInflater();
+                View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
+
+                TextView text = (TextView) layout.findViewById(R.id.text);
+                text.setText(R.string.toast_save_seconds);
+
+                Toast toast = new Toast(getApplicationContext());
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setDuration(Toast.LENGTH_LONG);
+                toast.setView(layout);
+                toast.show();
+
+                return false;
+            }
+        });
     }
 
     void saveParams() {
-        sPref = getPreferences(MODE_PRIVATE);
-        ed = sPref.edit();
-        ed.putString(SAVED_TEXT, edText.getText().toString());
-        ed.apply();
+        if (!edText.getText().toString().equals("") || !edText.getText().toString().equals("0")) {
+            sPref = getPreferences(MODE_PRIVATE);
+            ed = sPref.edit();
+            ed.putString(SAVED_TEXT, edText.getText().toString());
+            ed.apply();
+        }
+
     }
 
     int loadParam() {
@@ -202,7 +233,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEdText(View view) {
-
+        edText.setFocusableInTouchMode(true);
+        edText.setFocusable(true);
     }
 
 
@@ -243,17 +275,7 @@ public class MainActivity extends AppCompatActivity {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
 
-   /*
-        edText.setText(MessageFormat.format("{0}", seconds));
-        myCountDownTimer = new MyCountDownTimer(seconds*1000, 1000);
-
-       if(isTimerOn) {
-            startTimer();
-            mTimerSwitch.setChecked(true);
-        }*/
-
         if (isTorchOn) {
-            //Получаем для приложения параметры камеры:
             mTorchOnOffButton.setImageResource(R.drawable.fl_on);
             turnOnFlash();
         } else {
@@ -313,7 +335,6 @@ public class MainActivity extends AppCompatActivity {
     }
     // endregion
 
-
     // region  переходы на ддр. Активити и BroadcastReceiver
     public void onClickSetting(View view) {
         Intent intent = new Intent(this, PrefActivity.class);
@@ -350,6 +371,7 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
     // endregion
+
 
 
     // Скрывает клавиатуру и убирает фокус из edText

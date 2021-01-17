@@ -4,14 +4,14 @@
     android:id="@+id/id_toast_save_value"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#555"
+    android:background="#222"
     android:padding="16dp">
 
 
     <TextView android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="#81C784"
+        android:textColor="#ccc"
         android:textSize="30sp"
         app:layout_constraintLeft_toLeftOf="parent"
 
