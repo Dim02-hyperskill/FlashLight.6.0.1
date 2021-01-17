@@ -37,7 +37,7 @@ import android.widget.Toast;
 import java.text.MessageFormat;
 
 public class MainActivity extends AppCompatActivity {
-
+// заебло
     private ImageButton mTorchOnOffButton, mIbTorch_touch;
     private Boolean isTorchOn;
     private Boolean isTimerOn;
