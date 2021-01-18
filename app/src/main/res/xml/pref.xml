@@ -5,10 +5,10 @@
         android:defaultValue="false"
         android:key="key_torch_on"
         android:title="@string/turn_start" />
-    <CheckBoxPreference
+    <!--<CheckBoxPreference
         android:defaultValue="false"
         android:key="key_timer_on"
-        android:title="@string/turn_timer_start" />
+        android:title="@string/turn_timer_start" />-->
     <CheckBoxPreference
         android:defaultValue="true"
         android:key="key_keep_screen"

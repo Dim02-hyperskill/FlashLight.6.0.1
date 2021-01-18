@@ -21,5 +21,6 @@
     <string name="description_about">\??? Описание</string>
     <string name="arrows_rotate_img">arrows rotate image</string>
     <string name="toast_save_seconds">Вы сохранили значение таймера:</string>
+    <string name="sec">сек</string>
 
 </resources>

@@ -22,7 +22,7 @@
     <string name="arrows_rotate_img">arrows rotate image</string>
 
     <string name="toast_save_seconds">You saved the timer value:</string>
-
+    <string name="sec">sec</string>
 
 
 </resources>

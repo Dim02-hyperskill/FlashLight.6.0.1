@@ -38,11 +38,13 @@ import android.widget.Toast;
 
 import java.text.MessageFormat;
 
+import static java.lang.String.format;
+
 public class MainActivity extends AppCompatActivity {
 // заебло
     private ImageButton mTorchOnOffButton, mIbTorch_touch;
     private Boolean isTorchOn;
-    private Boolean isTimerOn;
+    private Boolean isTimerOn = false;
     private Boolean blockOff;
     private Boolean do_not_turn_rotate; // чтобы не отключать фонарь при запуске активности Rotate
     SharedPreferences sp, sPref;   // для Активити настроек
@@ -71,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         edText = findViewById(R.id.edText);
 
         isTorchOn = sp.getBoolean("key_torch_on", false);
-        isTimerOn = sp.getBoolean("key_timer_on", false);
+        //isTimerOn = sp.getBoolean("key_timer_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
 
@@ -114,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
         });
         // endregion
 
-
         // region Ввод цифр в таймер
        edText.addTextChangedListener(new TextWatcher() {
             @Override
@@ -131,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
-
+        // region Кнопка и Переключатель
         mTorchOnOffButton.setOnClickListener(v -> {
             closeKeyboard();
             isTorchOn = !isTorchOn;
@@ -156,10 +157,8 @@ public class MainActivity extends AppCompatActivity {
         mTimerSwitch.setChecked(isTimerOn);
         mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             closeKeyboard();
-
             edText.setFocusableInTouchMode(true);
             edText.setFocusable(true);
-
             String a = Integer.toString(seconds);
             if (isChecked) {
                 startTimer();
@@ -174,29 +173,27 @@ public class MainActivity extends AppCompatActivity {
                 edText.setTextColor(Color.WHITE);
             }
         });
+        //endregion
 
         edText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                edText.setTextColor(Color.YELLOW);
                 closeKeyboard();
                 edText.clearFocus();
                 edText.setFocusableInTouchMode(false);
                 edText.setFocusable(false);
                 saveParams();
-
                 LayoutInflater inflater = getLayoutInflater();
                 View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
-
                 TextView text = (TextView) layout.findViewById(R.id.text);
-                text.setText(R.string.toast_save_seconds);
-
+                //String a = Integer.toString(seconds);
+                //String message = getResources().getString(R.string.toast_save_seconds) + "\n" + seconds + " " + getResources().getString(R.string.sec);
+                text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
                 Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, 0);
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -670);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.setView(layout);
                 toast.show();
-
                 return false;
             }
         });
@@ -233,8 +230,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickEdText(View view) {
-        edText.setFocusableInTouchMode(true);
-        edText.setFocusable(true);
+        edText.setFocusableInTouchMode(true); // Это разрешает фокус и ввод снова
+        edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
 
 
@@ -268,6 +265,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             imageView2.setVisibility(View.VISIBLE);
         }
+
+
 
         boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
 
@@ -305,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        saveParams();
+        //saveParams();
         if (do_not_turn_rotate) turnOffFlash();
     }
 
