@@ -41,7 +41,6 @@ import java.text.MessageFormat;
 import static java.lang.String.format;
 
 public class MainActivity extends AppCompatActivity {
-// заебло
     private ImageButton mTorchOnOffButton, mIbTorch_touch;
     private Boolean isTorchOn;
     private Boolean isTimerOn = false;
@@ -69,13 +68,10 @@ public class MainActivity extends AppCompatActivity {
         imageView2 = findViewById(R.id.imageView2);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
-
         edText = findViewById(R.id.edText);
-
         isTorchOn = sp.getBoolean("key_torch_on", false);
         //isTimerOn = sp.getBoolean("key_timer_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
-
 
         seconds = loadParam();
         edText.setText(MessageFormat.format("{0}", seconds));
@@ -161,6 +157,9 @@ public class MainActivity extends AppCompatActivity {
             edText.setFocusable(true);
             String a = Integer.toString(seconds);
             if (isChecked) {
+                if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+                    edText.setText(MessageFormat.format("{0}", loadParam()));
+                }
                 startTimer();
                 isTimerOn = true;
                 edText.setText(a);
@@ -186,8 +185,6 @@ public class MainActivity extends AppCompatActivity {
                 LayoutInflater inflater = getLayoutInflater();
                 View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
                 TextView text = (TextView) layout.findViewById(R.id.text);
-                //String a = Integer.toString(seconds);
-                //String message = getResources().getString(R.string.toast_save_seconds) + "\n" + seconds + " " + getResources().getString(R.string.sec);
                 text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
                 Toast toast = new Toast(getApplicationContext());
                 toast.setGravity(Gravity.CENTER_VERTICAL, 0, -670);
@@ -234,7 +231,7 @@ public class MainActivity extends AppCompatActivity {
         edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
 
-
+    //region Класс Таймера
     private class MyCountDownTimer extends CountDownTimer {
         MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -254,6 +251,7 @@ public class MainActivity extends AppCompatActivity {
             edText.setText("0");
         }
     }
+    //endregion
 
     // region onResume
     @Override
@@ -265,8 +263,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             imageView2.setVisibility(View.VISIBLE);
         }
-
-
 
         boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
 
@@ -371,35 +367,32 @@ public class MainActivity extends AppCompatActivity {
     }
     // endregion
 
-
-
-    // Скрывает клавиатуру и убирает фокус из edText
+    // region Скрывает клавиатуру и убирает фокус из edText
     private void closeKeyboard(){
         View view = this.getCurrentFocus(); // Скрывает клавиатуру
         if (view != null) {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(),  0);
         }
-
-        // Убирает фокус из edText
-        // Для убирания фокуса необходимо наличие пустого LinearLayout с android:focusable="true" и android:focusableInTouchMode="true"
         edText.clearFocus();
-        //  edText.setFocusableInTouchMode(false);
-        //  edText.setFocusable(false);
-        //  edText.setFocusableInTouchMode(true);
-        //  edText.setFocusable(true);
-
-        if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
-           edText.setText("" + loadParam());
-        } else {
-           // if (!edText.getText().toString().equals("0")) saveParams();
-        }
     }
-
+    //endregion
 
 
 
 }
+
+
+
+
+    //  Убирает фокус из edText
+    //  Для убирания фокуса необходимо наличие пустого LinearLayout с android:focusable="true" и android:focusableInTouchMode="true"
+    //  edText.clearFocus();
+    //  edText.setFocusableInTouchMode(false);
+    //  edText.setFocusable(false);
+    //  edText.setFocusableInTouchMode(true);
+    //  edText.setFocusable(true);
+
 
 
    /* //Чтобы из кода узнать текущую ориентацию, можно создать следующую функцию:
