@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
         //isTimerOn = sp.getBoolean("key_timer_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
+
         seconds = loadParam();
         edText.setText(MessageFormat.format("{0}", seconds));
 
@@ -152,14 +153,16 @@ public class MainActivity extends AppCompatActivity {
 
         mTimerSwitch.setChecked(isTimerOn);
         mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+
+            if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+                edText.setText("" + loadParam());
+            }
+
             closeKeyboard();
             edText.setFocusableInTouchMode(true);
             edText.setFocusable(true);
             String a = Integer.toString(seconds);
             if (isChecked) {
-                if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
-                    edText.setText(MessageFormat.format("{0}", loadParam()));
-                }
                 startTimer();
                 isTimerOn = true;
                 edText.setText(a);
@@ -177,20 +180,25 @@ public class MainActivity extends AppCompatActivity {
         edText.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                closeKeyboard();
                 edText.clearFocus();
                 edText.setFocusableInTouchMode(false);
                 edText.setFocusable(false);
-                saveParams();
                 LayoutInflater inflater = getLayoutInflater();
                 View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
                 TextView text = (TextView) layout.findViewById(R.id.text);
-                text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
+                if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+                    text.setText("Нельзя сохранить \"0\" или пустое значение ");
+                } else {
+                    text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
+                    saveParams();
+                }
                 Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -670);
+                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -690);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.setView(layout);
                 toast.show();
+
+                closeKeyboard();
                 return false;
             }
         });
@@ -231,7 +239,7 @@ public class MainActivity extends AppCompatActivity {
         edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
 
-    //region Класс Таймера
+        //region Класс Таймера
     private class MyCountDownTimer extends CountDownTimer {
         MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
@@ -374,25 +382,22 @@ public class MainActivity extends AppCompatActivity {
             InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
             imm.hideSoftInputFromWindow(view.getWindowToken(),  0);
         }
+
+        // Убирает фокус из edText
+        // Для убирания фокуса необходимо наличие пустого LinearLayout с android:focusable="true" и android:focusableInTouchMode="true"
         edText.clearFocus();
+        //  edText.setFocusableInTouchMode(false);
+        //  edText.setFocusable(false);
+        //  edText.setFocusableInTouchMode(true);
+        //  edText.setFocusable(true);
+
+
     }
     //endregion
 
 
 
 }
-
-
-
-
-    //  Убирает фокус из edText
-    //  Для убирания фокуса необходимо наличие пустого LinearLayout с android:focusable="true" и android:focusableInTouchMode="true"
-    //  edText.clearFocus();
-    //  edText.setFocusableInTouchMode(false);
-    //  edText.setFocusable(false);
-    //  edText.setFocusableInTouchMode(true);
-    //  edText.setFocusable(true);
-
 
 
    /* //Чтобы из кода узнать текущую ориентацию, можно создать следующую функцию:
