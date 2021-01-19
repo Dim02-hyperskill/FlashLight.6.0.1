@@ -23,6 +23,8 @@
 
     <string name="toast_save_seconds">You saved the timer value:</string>
     <string name="sec">sec</string>
+    <string name="not_can_save">You can not save a \"0\" or blank value</string>
+
 
 
 </resources>

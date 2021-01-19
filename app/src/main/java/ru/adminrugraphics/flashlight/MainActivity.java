@@ -187,17 +187,17 @@ public class MainActivity extends AppCompatActivity {
                 View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
                 TextView text = (TextView) layout.findViewById(R.id.text);
                 if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
-                    text.setText("Нельзя сохранить \"0\" или пустое значение ");
+                    text.setText(R.string.not_can_save);
                 } else {
                     text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
                     saveParams();
                 }
                 Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER_VERTICAL, 0, -690);
+                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.setGravity(Gravity.TOP, 0, 100);
                 toast.setDuration(Toast.LENGTH_LONG);
                 toast.setView(layout);
                 toast.show();
-
                 closeKeyboard();
                 return false;
             }
