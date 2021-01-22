@@ -153,11 +153,9 @@ public class MainActivity extends AppCompatActivity {
 
         mTimerSwitch.setChecked(isTimerOn);
         mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
-
             if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
                 edText.setText("" + loadParam());
             }
-
             closeKeyboard();
             edText.setFocusableInTouchMode(true);
             edText.setFocusable(true);
@@ -239,7 +237,7 @@ public class MainActivity extends AppCompatActivity {
         edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
 
-        //region Класс Таймера
+    //region Класс Таймера
     private class MyCountDownTimer extends CountDownTimer {
         MyCountDownTimer(long millisInFuture, long countDownInterval) {
             super(millisInFuture, countDownInterval);
