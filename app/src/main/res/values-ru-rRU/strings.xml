@@ -7,13 +7,15 @@
     <string name="get_version">"Номер текущей версии: "</string>
     <string name="timer">Таймер</string>
     <string name="battery_charge">Заряд батареи</string>
-    <string name="temperature_battery">Температура батареи</string>
     <string name="set_timer_time">Установите время таймера</string>
-    <string name="turn_timer_start">Вкл. таймер при старте приложения</string>
-    <string name="turn_start">Вкл. фонар. при старте приложения</string>
+    <string name="saveTimerValueOff">Сохранять значение таймера</string>
+    <string name="saveTimerValueOff_summary">Сохранять значение таймера при выходе из приложения</string>
+    <string name="turn_start">При старте приложения</string>
+    <string name="turn_start_summary">Включить фонарик при старте приложения</string>
     <string name="timer_pref">Нажмите для установки таймера</string>
     <string name="disable_screen_lock">Отключить блокировку экрана</string>
-    <string name="not_turn_is_locked">При блокировке экрана фонарик не выключается!</string>
+    <string name="not_turn_is_locked">При отключении экрана</string>
+    <string name="not_turn_is_locked_summary">При отключении экрана фонарик не выключается!</string>
     <string name="my_link"><![CDATA[<a href="https://rugraphics.ru/photoshop/fonarik-dlya-smatrfona-android">Ссылка на описание приложения.</a>]]></string>
     <string name="description_user_manual">При первом запуске приложения светодиодный фонарик и таймер по умолчанию отключёны.</string>
     <string name="error_message">Вспышка камеры недоступна</string>
@@ -23,5 +25,6 @@
     <string name="toast_save_seconds">Вы сохранили значение таймера:</string>
     <string name="sec">сек</string>
     <string name="not_can_save">Нельзя сохранить \"0\" или пустое значение</string>
+    <string name="message_screen_lock">Фонарик будет работать при выключенном экране</string>
 
 </resources>

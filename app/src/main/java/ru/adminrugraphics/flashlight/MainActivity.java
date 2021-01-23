@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 
 import android.annotation.SuppressLint; // Это убирает предупреждения
-import android.app.Activity;
 import android.graphics.Color;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
@@ -17,11 +16,9 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Typeface;
 import android.os.CountDownTimer;
 import android.preference.PreferenceManager;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -41,8 +38,8 @@ import java.text.MessageFormat;
 import static java.lang.String.format;
 
 public class MainActivity extends AppCompatActivity {
-    private ImageButton mTorchOnOffButton, mIbTorch_touch;
-    private Boolean isTorchOn;
+    private ImageButton torchButton, sensorTouchButton;
+    private Boolean isTorchOn, isTimerSaveOff;
     private Boolean isTimerOn = false;
     private Boolean blockOff;
     private Boolean do_not_turn_rotate; // чтобы не отключать фонарь при запуске активности Rotate
@@ -50,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
     public int seconds;
     private EditText edText;
     MyCountDownTimer myCountDownTimer;
-    public SwitchCompat mTimerSwitch;
+    public SwitchCompat timerSwitch;
     ImageView imageView2;
     boolean isCameraFlash;
     final String SAVED_TEXT = "saved_text";
@@ -61,16 +58,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mIbTorch_touch = findViewById(R.id.ib_torch_tap);
-        mIbTorch_touch.setImageResource(R.drawable.tap);
-        mTorchOnOffButton = findViewById(R.id.ib_torch);
-        mTimerSwitch = findViewById(R.id.timer_switch);
+        sensorTouchButton = findViewById(R.id.ib_torch_tap);
+        sensorTouchButton.setImageResource(R.drawable.tap);
+        torchButton = findViewById(R.id.ib_torch);
+        timerSwitch = findViewById(R.id.timer_switch);
         imageView2 = findViewById(R.id.imageView2);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         registerReceiver(mBatInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
         edText = findViewById(R.id.edText);
         isTorchOn = sp.getBoolean("key_torch_on", false);
-        //isTimerOn = sp.getBoolean("key_timer_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
 
@@ -92,19 +88,37 @@ public class MainActivity extends AppCompatActivity {
         }
         // endregion
 
+        // region Изображение, позазывающее включение.отключение блокировки
+        imageView2.setOnTouchListener((v, event) -> {
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: // нажатие
+                    int duration = Toast.LENGTH_SHORT;
+                    Toast toast = Toast.makeText(getApplicationContext(), R.string.message_screen_lock, duration);
+                    toast.setGravity(Gravity.TOP, 0, 0);
+                    toast.show();
+                    break;
+                case MotionEvent.ACTION_UP: // отпускание
+                    v.performClick();
+
+                    break;
+            }
+            return true;
+        });
+        // endregion
+
         // region Сенсорная Кнопка
-        mIbTorch_touch.setOnTouchListener((v, event) -> {
+        sensorTouchButton.setOnTouchListener((v, event) -> {
             switch (event.getAction()) {
                 case MotionEvent.ACTION_DOWN: // нажатие
                     if (!isTorchOn) {
-                        mIbTorch_touch.setImageResource(R.drawable.tap_tapping);
+                        sensorTouchButton.setImageResource(R.drawable.tap_tapping);
                         turnOnFlash();
                     }
                     break;
                 case MotionEvent.ACTION_UP: // отпускание
                     v.performClick();
                     if (!isTorchOn) {
-                        mIbTorch_touch.setImageResource(R.drawable.tap);
+                        sensorTouchButton.setImageResource(R.drawable.tap);
                         turnOffFlash();
                     }
                     break;
@@ -130,29 +144,29 @@ public class MainActivity extends AppCompatActivity {
         //endregion
 
         // region Кнопка и Переключатель
-        mTorchOnOffButton.setOnClickListener(v -> {
+        torchButton.setOnClickListener(v -> {
             closeKeyboard();
             isTorchOn = !isTorchOn;
             String a = Integer.toString(seconds);
             if (isTorchOn) {
-                mTorchOnOffButton.setImageResource(R.drawable.fl_on);
+                torchButton.setImageResource(R.drawable.fl_on);
                 turnOnFlash();
-                if(mTimerSwitch.isChecked()) {
+                if(timerSwitch.isChecked()) {
                     startTimer();
                     edText.setText(a);
                 }
             } else {
-                mTorchOnOffButton.setImageResource(R.drawable.fl_off);
+                torchButton.setImageResource(R.drawable.fl_off);
                 turnOffFlash();
-                if (mTimerSwitch.isChecked()) {
+                if (timerSwitch.isChecked()) {
                     myCountDownTimer.cancel();
                 }
                 edText.setText(a);
             }
         });
 
-        mTimerSwitch.setChecked(isTimerOn);
-        mTimerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        timerSwitch.setChecked(isTimerOn);
+        timerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
                 edText.setText("" + loadParam());
             }
@@ -209,7 +223,6 @@ public class MainActivity extends AppCompatActivity {
             ed.putString(SAVED_TEXT, edText.getText().toString());
             ed.apply();
         }
-
     }
 
     int loadParam() {
@@ -251,8 +264,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onFinish() {
             isTorchOn = false;
-            mTorchOnOffButton.setImageResource(R.drawable.fl_off);
-            mTimerSwitch.setChecked(false);
+            torchButton.setImageResource(R.drawable.fl_off);
+            timerSwitch.setChecked(false);
             turnOffFlash();
             edText.setText("0");
         }
@@ -263,6 +276,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
+
+        isTimerSaveOff = sp.getBoolean("saveTimerValueOff", false);
         do_not_turn_rotate = true;
         if (!sp.getBoolean("key_block_off", false)) {
             imageView2.setVisibility(View.INVISIBLE);
@@ -277,10 +292,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         if (isTorchOn) {
-            mTorchOnOffButton.setImageResource(R.drawable.fl_on);
+            torchButton.setImageResource(R.drawable.fl_on);
             turnOnFlash();
         } else {
-            mTorchOnOffButton.setImageResource(R.drawable.fl_off);
+            torchButton.setImageResource(R.drawable.fl_off);
             turnOffFlash();
         }
     }
@@ -306,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        //saveParams();
+        if (isTimerSaveOff) saveParams();
         if (do_not_turn_rotate) turnOffFlash();
     }
 
@@ -348,8 +363,6 @@ public class MainActivity extends AppCompatActivity {
             int level = i.getIntExtra("level", 0);
             TextView tvBat = findViewById(R.id.tv_bat_vol);
             tvBat.setText(MessageFormat.format("{0}%", Integer.toString(level)));
-            tvBat.setTypeface(Typeface.createFromAsset(getAssets(), "calculator.otf"));
-
         }
     };
 

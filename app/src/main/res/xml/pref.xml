@@ -1,32 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <CheckBoxPreference
+    <SwitchPreference
         android:defaultValue="false"
         android:key="key_torch_on"
-        android:title="@string/turn_start" />
-    <!--<CheckBoxPreference
-        android:defaultValue="false"
-        android:key="key_timer_on"
-        android:title="@string/turn_timer_start" />-->
-    <CheckBoxPreference
+        android:title="@string/turn_start"
+        android:summary="@string/turn_start_summary"/>
+
+    <SwitchPreference
         android:defaultValue="true"
         android:key="key_keep_screen"
         android:title="@string/disable_screen_lock" />
-    <CheckBoxPreference
+
+    <SwitchPreference
         android:defaultValue="true"
         android:key="key_block_off"
-        android:title="@string/not_turn_is_locked" />
+        android:title="@string/not_turn_is_locked"
+        android:summary="@string/not_turn_is_locked_summary" />
 
-<!--    <EditTextPreference
-        android:defaultValue="30"
-        android:dialogTitle="@string/set_timer_time"
-        android:ems="3"
-        android:maxLength="3"
-        android:inputType="number"
-        android:key="key_second"
-        android:selectAllOnFocus="true"
-        android:singleLine="true"
-        android:title="@string/timer_pref" />-->
+    <SwitchPreference
+
+        android:summary="@string/saveTimerValueOff_summary"
+
+        android:defaultValue="false"
+        android:key="saveTimerValueOff"
+        android:title="@string/saveTimerValueOff"
+        />
+
+
+    <!--    <EditTextPreference
+            android:defaultValue="30"
+            android:dialogTitle="@string/set_timer_time"
+            android:ems="3"
+            android:maxLength="3"
+            android:inputType="number"
+            android:key="key_second"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            android:title="@string/timer_pref" />-->
 
 </PreferenceScreen>

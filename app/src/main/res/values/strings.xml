@@ -7,13 +7,15 @@
     <string name="get_version">Current version number:</string>
     <string name="timer">Timer</string>
     <string name="battery_charge">battery charge</string>
-    <string name="temperature_battery">t° battery</string>
     <string name="set_timer_time">Set the timer time</string>
-    <string name="turn_start">Turn on the Flashlight when the application starts</string>
-    <string name="turn_timer_start">Turn on the Timer when the application starts</string>
+    <string name="turn_start">At application start</string>
+    <string name="turn_start_summary">Turn on the Flashlight when the application starts</string>
+    <string name="saveTimerValueOff">Save timer</string>
+    <string name="saveTimerValueOff_summary">Save timer value when exiting application</string>
     <string name="timer_pref">Press to set the timer</string>
     <string name="disable_screen_lock">Disable screen lock</string>
-    <string name="not_turn_is_locked">The flashlight does not turn \\n off when the screen is locked!</string>
+    <string name="not_turn_is_locked">When the screen is turned off</string>
+    <string name="not_turn_is_locked_summary">When the screen turns off, the flashlight does not turn off!</string>
     <string name="description_about">\???? Description</string>
     <string name="description_user_manual">When you first launch the app, the LED flashlight and timer are disabled by default.</string>
 
@@ -24,7 +26,7 @@
     <string name="toast_save_seconds">You saved the timer value:</string>
     <string name="sec">sec</string>
     <string name="not_can_save">You can not save a \"0\" or blank value</string>
-
+    <string name="message_screen_lock">The flashlight will work when the screen is turned off</string>
 
 
 </resources>
