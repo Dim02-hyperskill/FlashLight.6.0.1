@@ -321,7 +321,16 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (isTimerSaveOff) saveParams();
+        if (isTimerSaveOff) {
+            if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+            } else {
+                saveParams();
+            }
+
+        }
+
+
+
         if (do_not_turn_rotate) turnOffFlash();
     }
 
