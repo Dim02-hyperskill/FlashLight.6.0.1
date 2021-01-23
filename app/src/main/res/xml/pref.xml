@@ -19,13 +19,12 @@
         android:summary="@string/not_turn_is_locked_summary" />
 
     <SwitchPreference
-
         android:summary="@string/saveTimerValueOff_summary"
-
         android:defaultValue="false"
         android:key="saveTimerValueOff"
         android:title="@string/saveTimerValueOff"
         />
+
 
 
     <!--    <EditTextPreference

@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     void saveParams() {
-        if (!edText.getText().toString().equals("") || !edText.getText().toString().equals("0")) {
+        if (!edText.getText().toString().equals("") && !edText.getText().toString().equals("0")) {
             sPref = getPreferences(MODE_PRIVATE);
             ed = sPref.edit();
             ed.putString(SAVED_TEXT, edText.getText().toString());
@@ -321,16 +321,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (isTimerSaveOff) {
-            if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
-            } else {
-                saveParams();
-            }
-
-        }
-
-
-
+        if (isTimerSaveOff) saveParams();
         if (do_not_turn_rotate) turnOffFlash();
     }
 
