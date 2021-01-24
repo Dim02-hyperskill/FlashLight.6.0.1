@@ -10,7 +10,7 @@ public class PrefActivity extends PreferenceActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_pref);
-        addPreferencesFromResource(R.xml.pref);
+        addPreferencesFromResource(R.xml.settings);
         //addContentView(R.xml.pref);
     }
 }

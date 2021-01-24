@@ -20,7 +20,6 @@
     <string name="rate_the_application">Rate the application</string>
 
 
-
     <string name="not_turn_is_locked_img">not_turn_is_locked</string>
     <string name="arrows_rotate_img">arrows rotate image</string>
 
@@ -30,8 +29,7 @@
     <string name="message_screen_lock">The flashlight will work when the screen is turned off</string>
 
 
-
-    <string name="my_link"><![CDATA[<a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Please rate the app.</a>]]></string>
+    <string name="link"><![CDATA[<a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Please rate the app.</a>]]></string>
     <string name="description_user_manual">
          <![CDATA[<p> • When the application is first launched, the LED flashlight and saving the current timer value when exiting the application are disabled by default. Auto screen off is disabled, the flashlight does not turn off when the screen is turned off. </p>]]>
          <![CDATA[<p> • There is a touch button. The flashlight now responds to touching the screen, when you touch the button, it lights up, when released, it goes out</p>]]>
@@ -41,6 +39,7 @@
          <![CDATA[<p> • When the \"Save timer value\" option is enabled, the current timer value will be automatically saved when you exit the application. </p>]]>
          <![CDATA[<p></p>]]>
     </string>
+
 
 
 </resources>

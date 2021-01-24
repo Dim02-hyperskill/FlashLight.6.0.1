@@ -31,7 +31,7 @@ public class AboutActivity extends AppCompatActivity {
 
         TextView tvLink = findViewById(R.id.tv_link);
         tvLink.setMovementMethod(LinkMovementMethod.getInstance());
-        tvLink.setText( Html.fromHtml(getResources().getString(R.string.my_link)) );
+        tvLink.setText( Html.fromHtml(getResources().getString(R.string.link)) );
 
 
         TextView tvDescription = findViewById(R.id.tv_description);

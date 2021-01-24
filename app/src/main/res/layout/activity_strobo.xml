@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     tools:context=".StroboActivity">
 
 
@@ -14,153 +15,178 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:id="@+id/LLhor1"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@color/cardview_dark_background"
+            android:orientation="vertical">
 
-            <SeekBar
-                android:id="@+id/seekBar1"
+            <LinearLayout
+                android:id="@+id/LLhor1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edText1"
-                android:layout_width="100dp"
+                <SeekBar
+                    android:id="@+id/seekBar1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3" />
+
+                <EditText
+                    android:id="@+id/edText1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:ems="2"
+                    android:inputType="number|numberDecimal"
+                    android:maxLength="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLhor2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0"
-                android:ems="2"
-                android:inputType="number|numberDecimal"
-                android:maxLength="2" />
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3" />
+
+                <EditText
+                    android:id="@+id/edText2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:maxLength="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/LLhor3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <SeekBar
+                    android:id="@+id/seekBar3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3" />
+
+                <EditText
+                    android:id="@+id/edText3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+            </LinearLayout>
         </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/between"
+        android:layout_width="match_parent"
+        android:layout_height="30pt"
+        android:orientation="vertical">
+    </LinearLayout>
+
+
 
         <LinearLayout
-            android:id="@+id/LLhor2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:background="@color/cardview_dark_background"
+            android:orientation="vertical">
 
-            <SeekBar
-                android:id="@+id/seekBar2"
+            <LinearLayout
+                android:id="@+id/LLhor4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edText2"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0"
-                android:ems="2"
-                android:inputType="number"
-                android:maxLength="2" />
-        </LinearLayout>
+                <SeekBar
+                    android:id="@+id/seekBarSecond1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3" />
 
-        <LinearLayout
-            android:id="@+id/LLhor3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <SeekBar
-                android:id="@+id/seekBar3"
+                <EditText
+                    android:id="@+id/edTextSecond1"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:maxLength="2" />
+
+            </LinearLayout>
+
+            <LinearLayout
+
+                android:id="@+id/LLhor5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3" />
+                android:orientation="horizontal">
 
-            <EditText
-                android:id="@+id/edText3"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0"
-                android:ems="2"
-                android:inputType="number"
-                android:maxLength="2" />
+                <SeekBar
+                    android:id="@+id/seekBarSecond2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3" />
 
-        </LinearLayout>
+                <EditText
+                    android:id="@+id/edTextSecond2"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:maxLength="2" />
+            </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/LLhor4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <SeekBar
-                android:id="@+id/seekBarSecond1"
+            <LinearLayout
+                android:id="@+id/LLhor6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3" />
+                android:orientation="horizontal">
 
+                <SeekBar
+                    android:id="@+id/seekBarSecond3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="3" />
 
-
-            <EditText
-                android:id="@+id/edTextSecond1"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0"
-                android:ems="2"
-                android:inputType="number"
-                android:maxLength="2" />
-
+                <EditText
+                    android:id="@+id/edTextSecond3"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="0"
+                    android:ems="2"
+                    android:inputType="number"
+                    android:maxLength="2" />
+            </LinearLayout>
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/LLhor5"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <SeekBar
-                android:id="@+id/seekBarSecond2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3" />
-
-            <EditText
-                android:id="@+id/edTextSecond2"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0"
-                android:ems="2"
-                android:inputType="number"
-                android:maxLength="2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/LLhor6"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <SeekBar
-                android:id="@+id/seekBarSecond3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="3" />
-
-            <EditText
-                android:id="@+id/edTextSecond3"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:layout_weight="0"
-                android:ems="2"
-                android:inputType="number"
-                android:maxLength="2" />
-        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/LLhor7"
@@ -170,34 +196,21 @@
 
             <Button
                 android:id="@+id/btn1"
-                android:onClick="onClickBtn1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
+                android:onClick="onClickBtn1"
                 android:text="Button" />
 
-            <Button
+<!--            <Button
                 android:id="@+id/btn2"
-                android:onClick="onClickBtn2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="20dp"
                 android:layout_weight="1"
-                android:text="Вспышка выкл" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/LLhor8"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/tV1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:onClick="onClickBtn2"
+                android:text="Вспышка выкл" />-->
         </LinearLayout>
 
 

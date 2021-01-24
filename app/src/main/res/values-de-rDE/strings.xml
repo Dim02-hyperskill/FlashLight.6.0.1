@@ -29,14 +29,10 @@
     <string name="message_screen_lock"> Die Taschenlampe funktioniert, wenn der Bildschirm ausgeschaltet ist </string>
 
 
-    <string name="my_link">
-
-    <![CDATA[<p> <a href="https://rugraphics.com/photoshop/fonarik-dlya-smatrfona-android"> Link zur Anwendungsbeschreibung. </a> </p>]]>
-
+    <string name="link">
      <![CDATA[<p> <a href="https://play.google.com/store/apps/details?id=de.adminrugraphics.flashlight"> Bitte bewerten Sie die Anwendung </a> </p> ]]>
-
-
     </string>
+
     <string name="description_user_manual">
          <![CDATA[<p> • Beim ersten Start der Anwendung sind die LED-Taschenlampe und das Speichern des aktuellen Timer-Werts beim Beenden der Anwendung standardmäßig deaktiviert. Das automatische Ausschalten des Bildschirms ist deaktiviert. Die Taschenlampe schaltet sich nicht aus, wenn der Bildschirm ausgeschaltet ist. </p>]]>
          <![CDATA[<p> • Es gibt eine Touch-Taste. Die Taschenlampe reagiert jetzt auf das Berühren des Bildschirms. Wenn Sie die Taste berühren, leuchtet sie auf. Wenn sie losgelassen wird, erlischt sie. </p>]]>

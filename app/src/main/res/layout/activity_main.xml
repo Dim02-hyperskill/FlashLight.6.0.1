@@ -139,34 +139,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.186" />
 
-    <!-- <TextView
-        android:id="@+id/tv_term_tint"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/temperature_battery"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.065"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.126"
-        tools:ignore="HardcodedText" />
-
-    <TextView
-        android:id="@+id/tv_term_vol"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:textColor="#428634"
-        app:layout_constraintBaseline_toBaselineOf="@+id/tv_term_tint"
-        app:layout_constraintLeft_toRightOf="@+id/tv_term_tint"
-        tools:ignore="RtlHardcoded" />
--->
-
     <TextView
         android:id="@+id/tv_bat_vol"
         android:fontFamily="@font/calculator"
@@ -241,9 +213,13 @@
 
     <ImageButton
         android:id="@+id/imButStrobo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00000000"
+        android:contentDescription="@string/app_name"
         android:onClick="onClickStrobo"
-        android:layout_width="41dp"
-        android:layout_height="42dp"
+        android:scaleX="0.5"
+        android:scaleY="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
