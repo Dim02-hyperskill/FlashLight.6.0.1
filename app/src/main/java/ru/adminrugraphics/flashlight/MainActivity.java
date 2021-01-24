@@ -250,6 +250,8 @@ public class MainActivity extends AppCompatActivity {
         edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
 
+
+
     //region Класс Таймера
     private class MyCountDownTimer extends CountDownTimer {
         MyCountDownTimer(long millisInFuture, long countDownInterval) {
@@ -383,6 +385,11 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RotateActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    public void onClickStrobo(View view) {
+        Intent intent = new Intent(this, StroboActivity.class);
+        startActivity(intent);
     }
     // endregion
 
