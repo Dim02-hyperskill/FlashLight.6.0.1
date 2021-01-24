@@ -26,6 +26,7 @@
     <string name="sec">сек</string>
     <string name="not_can_save">Нельзя сохранить \"0\" или пустое значение</string>
     <string name="message_screen_lock">Фонарик будет работать при выключенном экране</string>
+    <string name="rate_the_application">Поставить оценку приложению </string>
 
 
     <string name="my_link">

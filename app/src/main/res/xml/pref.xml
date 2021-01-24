@@ -26,6 +26,13 @@
         android:title="@string/saveTimerValueOff"
         />
 
+     <PreferenceScreen
+
+                android:title="@string/rate_the_application" >
+                <intent
+                    android:action="android.intent.action.VIEW"
+                    android:data="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight" />
+     </PreferenceScreen>
 
 
     <!--    <EditTextPreference

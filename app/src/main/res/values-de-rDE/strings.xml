@@ -16,6 +16,7 @@
     <string name="disable_screen_lock"> Deaktiviert die Bildschirmsperre </string>
     <string name="not_turn_is_locked"> Wenn sich der Bildschirm ausschaltet </string>
     <string name="not_turn_is_locked_summary"> Wenn sich der Bildschirm ausschaltet, schaltet sich die Taschenlampe nicht aus! </string>
+    <string name="rate_the_application">Bewerten Sie die Anwendung</string>
 
 
     <string name="error_message"> Kamerablitz nicht verfügbar </string>
