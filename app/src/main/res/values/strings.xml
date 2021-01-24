@@ -32,12 +32,12 @@
 
     <string name="my_link"><![CDATA[<a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Please rate the app.</a>]]></string>
     <string name="description_user_manual">
-        <![CDATA[<p> • When the application is first launched, the LED flashlight and saving the current timer value when exiting the application are disabled by default. Auto screen off is disabled, the flashlight does not turn off when the screen is turned off. </p>]]>
+         <![CDATA[<p> • When the application is first launched, the LED flashlight and saving the current timer value when exiting the application are disabled by default. Auto screen off is disabled, the flashlight does not turn off when the screen is turned off. </p>]]>
+         <![CDATA[<p> • There is a touch button. The flashlight now responds to touching the screen, when you touch the button, it lights up, when released, it goes out</p>]]>
          <![CDATA[<p> • The timer does not turn off when the smartphone is locked. i.e., you can set the desired timer value, turn on the flashlight and put the smartphone into sleep mode. In this case, the flashlight will work and turn off when the timer reaches the specified time. Attention! In order for the timer to work in sleep mode, you must enable the \"Do not turn off the flashlight when the phone is locked\" option. This option is enabled by default. </p>]]>
          <![CDATA[<p> • By default, the timer turns off after 13 seconds. To change this value, simply touch the value display field and enter a new one. </p>]]>
          <![CDATA[<p> • Simple entry of the timer value. The new value is entered directly into the timer display field. The new timer value is saved with a long press on the input/display window. </p>]]>
          <![CDATA[<p> • When the \"Save timer value\" option is enabled, the current timer value will be automatically saved when you exit the application. </p>]]>
-         <![CDATA[<p> </p>]]>
          <![CDATA[<p></p>]]>
     </string>
 
