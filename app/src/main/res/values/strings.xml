@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">FlashLight</string>
-    <string name="error_message">Camera flash is not availablet</string>
+    <string name="error_message">Camera flash is not available</string>
     <string name="error_title">Error! No Flash!</string>
     <string name="exit_message">Exit</string>
     <string name="about">About</string>
@@ -10,16 +10,16 @@
     <string name="set_timer_time">Set the timer time</string>
     <string name="turn_start">At application start</string>
     <string name="turn_start_summary">Turn on the Flashlight when the application starts</string>
-    <string name="saveTimerValueOff">Save timer</string>
+    <string name="saveTimerValueOff">Save timer value</string>
     <string name="saveTimerValueOff_summary">Save timer value when exiting application</string>
     <string name="timer_pref">Press to set the timer</string>
     <string name="disable_screen_lock">Disable screen lock</string>
     <string name="not_turn_is_locked">When the screen is turned off</string>
     <string name="not_turn_is_locked_summary">When the screen turns off, the flashlight does not turn off!</string>
     <string name="description_about">\???? Description</string>
-    <string name="description_user_manual">When you first launch the app, the LED flashlight and timer are disabled by default.</string>
 
-    <string name="my_link"> </string>
+
+
     <string name="not_turn_is_locked_img">not_turn_is_locked</string>
     <string name="arrows_rotate_img">arrows rotate image</string>
 
@@ -27,6 +27,19 @@
     <string name="sec">sec</string>
     <string name="not_can_save">You can not save a \"0\" or blank value</string>
     <string name="message_screen_lock">The flashlight will work when the screen is turned off</string>
+
+
+
+    <string name="my_link"><![CDATA[<a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Please rate the app.</a>]]></string>
+    <string name="description_user_manual">
+        <![CDATA[<p> • When the application is first launched, the LED flashlight and saving the current timer value when exiting the application are disabled by default. Auto screen off is disabled, the flashlight does not turn off when the screen is turned off. </p>]]>
+         <![CDATA[<p> • The timer does not turn off when the smartphone is locked. i.e., you can set the desired timer value, turn on the flashlight and put the smartphone into sleep mode. In this case, the flashlight will work and turn off when the timer reaches the specified time. Attention! In order for the timer to work in sleep mode, you must enable the \"Do not turn off the flashlight when the phone is locked\" option. This option is enabled by default. </p>]]>
+         <![CDATA[<p> • By default, the timer turns off after 13 seconds. To change this value, simply touch the value display field and enter a new one. </p>]]>
+         <![CDATA[<p> • Simple entry of the timer value. The new value is entered directly into the timer display field. The new timer value is saved with a long press on the input/display window. </p>]]>
+         <![CDATA[<p> • When the \"Save timer value\" option is enabled, the current timer value will be automatically saved when you exit the application. </p>]]>
+         <![CDATA[<p> </p>]]>
+         <![CDATA[<p></p>]]>
+    </string>
 
 
 </resources>
