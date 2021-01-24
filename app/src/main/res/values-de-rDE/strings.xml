@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name"> Taschenlampe </string>
+    <string name="exit_message"> Kamerablitz nicht verfügbar </string>
+    <string name="error_title"> Fehler! Kein Blitz! </string>
+    <string name="about"> Über </string>
+    <string name="get_version"> "Aktuelle Versionsnummer:" </string>
+    <string name="timer"> Timer </string>
+    <string name="battery_charge"> Batterieladung </string>
+    <string name="set_timer_time"> Timerzeit einstellen </string>
+    <string name="saveTimerValueOff"> Timer-Wert speichern </string>
+    <string name="saveTimerValueOff_summary"> Speichern Sie den Timer-Wert beim Beenden der Anwendung </string>
+    <string name="turn_start"> Wenn die Anwendung gestartet wird </string>
+    <string name="turn_start_summary"> Schalten Sie die Taschenlampe ein, wenn die Anwendung gestartet wird </string>
+    <string name="timer_pref"> Klicken Sie hier, um den Timer </string> einzustellen
+    <string name="disable_screen_lock"> Deaktiviert die Bildschirmsperre </string>
+    <string name="not_turn_is_locked"> Wenn sich der Bildschirm ausschaltet </string>
+    <string name="not_turn_is_locked_summary"> Wenn sich der Bildschirm ausschaltet, schaltet sich die Taschenlampe nicht aus! </string>
+
+
+    <string name="error_message"> Kamerablitz nicht verfügbar </string>
+    <string name="not_turn_is_locked_img"> not_turn_is_locked </string>
+    <string name="description_about"> \ ??? Beschreibung </string>
+    <string name="arrows_rotate_img"> Pfeile drehen das Bild </string>
+    <string name="toast_save_seconds"> Sie haben den Timer-Wert gespeichert: </string>
+    <string name="sec"> sec </string>
+    <string name="not_can_save"> \"0\" oder leerer Wert </string> kann nicht gespeichert werden
+    <string name="message_screen_lock"> Die Taschenlampe funktioniert, wenn der Bildschirm ausgeschaltet ist </string>
+
+
+    <string name="my_link">
+
+    <![CDATA[<p> <a href="https://rugraphics.com/photoshop/fonarik-dlya-smatrfona-android"> Link zur Anwendungsbeschreibung. </a> </p>]]>
+
+     <![CDATA[<p> <a href="https://play.google.com/store/apps/details?id=de.adminrugraphics.flashlight"> Bitte bewerten Sie die Anwendung </a> </p> ]]>
+
+
+    </string>
+    <string name="description_user_manual">
+         <![CDATA[<p> • Beim ersten Start der Anwendung sind die LED-Taschenlampe und das Speichern des aktuellen Timer-Werts beim Beenden der Anwendung standardmäßig deaktiviert. Das automatische Ausschalten des Bildschirms ist deaktiviert. Die Taschenlampe schaltet sich nicht aus, wenn der Bildschirm ausgeschaltet ist. </p>]]>
+         <![CDATA[<p> • Es gibt eine Touch-Taste. Die Taschenlampe reagiert jetzt auf das Berühren des Bildschirms. Wenn Sie die Taste berühren, leuchtet sie auf. Wenn sie losgelassen wird, erlischt sie. </p>]]>
+         <![CDATA[<p> • Der Timer schaltet sich nicht aus, wenn das Smartphone gesperrt ist. Das heißt, Sie können den gewünschten Timerwert einstellen, die Taschenlampe einschalten und das Smartphone in den Ruhemodus versetzen. In diesem Fall funktioniert die Taschenlampe und schaltet sich aus, wenn der Timer die angegebene Zeit erreicht. Beachtung! Damit der Timer im Ruhemodus funktioniert, müssen Sie die Option "Taschenlampe nicht ausschalten, wenn das Telefon gesperrt ist" aktivieren. Diese Option ist standardmäßig aktiviert. </p>]]>
+         <![CDATA[<p> • Standardmäßig schaltet sich der Timer nach 13 Sekunden aus. Um diesen Wert zu ändern, berühren Sie einfach das Wertanzeigefeld und geben Sie ein neues ein. </p>]]>
+         <![CDATA[<p> • Einfache Eingabe des Timer-Werts. Der neue Wert wird direkt in das Timer-Anzeigefeld eingegeben. Der neue Timerwert wird durch langes Drücken im Eingabe- / Anzeigefenster gespeichert. </p>]]>
+         <![CDATA[<p> • Wenn die Option "Timerwert speichern" aktiviert ist, wird der aktuelle Timerwert beim Beenden der Anwendung automatisch gespeichert. </p>]]>
+         <![CDATA[<p> </p>]]>
+    </string>
+
+</resources>
