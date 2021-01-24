@@ -39,6 +39,9 @@
         <activity android:name=".AboutActivity"
             android:screenOrientation="portrait"/>
 
+        <activity android:name=".StroboActivity"
+            android:screenOrientation="portrait"/>
+
         <activity android:name=".MainActivity"
             android:screenOrientation="portrait"/>
     </application>
