@@ -390,6 +390,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStrobo(View view) {
         Intent intent = new Intent(this, StroboActivity.class);
         startActivity(intent);
+        finish();
     }
     // endregion
 
