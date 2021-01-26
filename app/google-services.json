@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "836776665654",
+    "project_id": "flashlight-162f7",
+    "storage_bucket": "flashlight-162f7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:836776665654:android:d7b26897dad3e94c4fae97",
+        "android_client_info": {
+          "package_name": "ru.adminrugraphics.flashlight"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "836776665654-718lljkjuujavddn1e6dcism4s52d78o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD178eHI1u7cG8_WUIIYC_4_ai8cuc9Niw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "836776665654-718lljkjuujavddn1e6dcism4s52d78o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
