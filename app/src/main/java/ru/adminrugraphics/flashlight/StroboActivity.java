@@ -65,7 +65,7 @@ public class StroboActivity extends AppCompatActivity {
         // endregion
 
         //region Number of Flashes First
-        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+/*        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 number_of_flashes_First = progress;
@@ -75,7 +75,7 @@ public class StroboActivity extends AppCompatActivity {
             public void onStartTrackingTouch(SeekBar seekBar) { }
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {  }
-        });
+        });*/
 
          edText1.addTextChangedListener(new TextWatcher() {
             @Override
@@ -85,8 +85,14 @@ public class StroboActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if(!edText1.getText().toString().equals("")) {
-                    number_of_flashes_First = Integer.parseInt(edText1.getText().toString()); // Get value from EditText into variable
-                    seekBar1.setProgress(number_of_flashes_First);
+                    int a = Integer.parseInt(edText1.getText().toString()); // Get value from EditText into variable
+                    if(a == 0){
+                        number_of_flashes_First = 999999999;
+                    } else {
+                        number_of_flashes_First = a;
+                    }
+
+                    //seekBar1.setProgress(number_of_flashes_First);
                     }
                 edText1.setSelection(edText1.getText().length()); // 
             }
