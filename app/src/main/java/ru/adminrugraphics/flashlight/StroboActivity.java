@@ -50,8 +50,8 @@ public class StroboActivity extends AppCompatActivity {
         edTextSecond2.setText(String.valueOf(flash_duration_Second));
         edTextSecond3 = findViewById(R.id.edTextSecond3);
         edTextSecond3.setText(String.valueOf(pause_duration_Second));
-        seekBar1 = findViewById(R.id.seekBar1);
-        seekBar1.setProgress(number_of_flashes_First);
+       // seekBar1 = findViewById(R.id.seekBar1);
+       // seekBar1.setProgress(number_of_flashes_First);
         seekBar2 = findViewById(R.id.seekBar2);
         seekBar2.setProgress(flash_duration_First);
         seekBar3 = findViewById(R.id.seekBar3);
@@ -65,18 +65,6 @@ public class StroboActivity extends AppCompatActivity {
         // endregion
 
         //region Number of Flashes First
-/*        seekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                number_of_flashes_First = progress;
-                edText1.setText(MessageFormat.format("{0}", number_of_flashes_First));
-                }
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) { }
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {  }
-        });*/
-
          edText1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
@@ -88,13 +76,12 @@ public class StroboActivity extends AppCompatActivity {
                     int a = Integer.parseInt(edText1.getText().toString()); // Get value from EditText into variable
                     if(a == 0){
                         number_of_flashes_First = 999999999;
-                    } else {
-                        number_of_flashes_First = a;
-                    }
+                    } else  number_of_flashes_First = a;
 
-                    //seekBar1.setProgress(number_of_flashes_First);
-                    }
-                edText1.setSelection(edText1.getText().length()); // 
+                } else {
+
+                }
+                edText1.setSelection(edText1.getText().length()); //
             }
         });
         //endregion

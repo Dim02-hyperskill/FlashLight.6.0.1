@@ -32,27 +32,23 @@
             <LinearLayout
                 android:id="@+id/LLhor1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="60dp"
                 android:orientation="vertical">
 
                 <EditText
                     android:id="@+id/edText1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_marginStart="10dp"
                     android:layout_weight="0"
-                    android:ems="12"
+                    android:backgroundTint="#00000000"
+                    android:ems="5"
+                    android:gravity="center"
                     android:importantForAutofill="no"
                     android:inputType="number|numberDecimal"
-                    android:maxLength="12"
+                    android:maxLength="5"
                     tools:ignore="LabelFor" />
-
-                <SeekBar
-                    android:id="@+id/seekBar1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="3" />
 
             </LinearLayout>
 
@@ -71,14 +67,15 @@
 
                 <EditText
                     android:id="@+id/edText2"
-                    android:layout_width="100dp"
+                    android:layout_width="60dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="0"
+                    android:backgroundTint="#00000000"
                     android:ems="2"
+                    android:importantForAutofill="no"
                     android:inputType="number"
                     android:maxLength="2"
-                    android:importantForAutofill="no"
                     tools:ignore="LabelFor" />
             </LinearLayout>
 
