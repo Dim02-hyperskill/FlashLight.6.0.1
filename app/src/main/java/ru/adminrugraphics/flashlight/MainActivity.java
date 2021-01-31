@@ -24,7 +24,6 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
@@ -34,8 +33,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.text.MessageFormat;
-
-import static java.lang.String.format;
 
 public class MainActivity extends AppCompatActivity {
     private ImageButton torchButton, sensorTouchButton;
@@ -164,7 +161,7 @@ public class MainActivity extends AppCompatActivity {
         timerSwitch.setChecked(isTimerOn);
         timerSwitch.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
-                edText.setText("" + loadParam());
+                edText.setText(MessageFormat.format("{0}", loadParam()));
             }
             closeKeyboard();
             edText.setFocusableInTouchMode(true);
@@ -185,17 +182,17 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
-        edText.setOnLongClickListener((View.OnLongClickListener) v -> {
+        edText.setOnLongClickListener(v -> {
             edText.clearFocus();
             edText.setFocusableInTouchMode(false);
             edText.setFocusable(false);
             LayoutInflater inflater = getLayoutInflater();
-            View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
-            TextView text = (TextView) layout.findViewById(R.id.text);
+            View layout = inflater.inflate(R.layout.toast_save_value_second, findViewById(R.id.id_toast_save_value));
+            TextView text = layout.findViewById(R.id.text); // Это текст для Toast
             if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
                 text.setText(R.string.not_can_save);
             } else {
-                text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
+                text.setText(MessageFormat.format("{0}{1}{2}{3}{4}", getString(R.string.toast_save_seconds), " ", seconds, " ", getString(R.string.sec)));
                 saveParams();
             }
             Toast toast = new Toast(getApplicationContext());

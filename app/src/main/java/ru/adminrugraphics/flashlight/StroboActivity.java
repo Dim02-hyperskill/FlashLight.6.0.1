@@ -22,7 +22,7 @@ import static android.graphics.Color.*;
 
 
 public class StroboActivity extends AppCompatActivity {
-    TextView tvQuantity_1, tvDurationPause_1, tvDurationFlash_1;
+    TextView tvQuantity_1, tvDurationPause_1, tvDurationFlash_1, tvInfo_1;
     Button btnStartStop_1;
     Handler handler;
     ImageButton imBtnSync;
@@ -51,11 +51,13 @@ public class StroboActivity extends AppCompatActivity {
         tvQuantity_1.setText("Непрерывно");
         tvDurationPause_1 = findViewById(R.id.tv_duration_pause_1);
         tvDurationFlash_1 = findViewById(R.id.tv_duration_flash_1);
+        tvInfo_1 = findViewById(R.id.tvInfo_1);
 
         seekBarQuantity1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 quantityFlashes_1 = progress;
+                tvInfo_1.setText("Заданное количество вспшек");
                 tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
                 if(quantityFlashes_1 == 0){
                     tvQuantity_1.setText("Непрерывно");
@@ -91,7 +93,7 @@ public class StroboActivity extends AppCompatActivity {
 
         seekBarFlash_1.setProgress(durationFlash_1 /100);
         double ss = durationFlash_1 /1000.0;
-        tvDurationFlash_1.setText(MessageFormat.format(getString(R.string.duration_flash), ss, getString(R.string.sec)));
+        tvDurationFlash_1.setText(MessageFormat.format("{0} {1} {2}", getString(R.string.duration_flash), ss, getString(R.string.sec)));
         seekBarFlash_1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
@@ -115,6 +117,7 @@ public class StroboActivity extends AppCompatActivity {
         if(i != -3){
             btnStartStop_1.setBackgroundColor(RED);
             turnOnFlash();
+            tvInfo_1.setText("Осталось");
             handler.postDelayed(() -> {
                 jop1();
             }, durationFlash_1);
@@ -133,7 +136,7 @@ public class StroboActivity extends AppCompatActivity {
             if(i == 0){
                 jop();
             } else {
-                countdownRemainingFlashes -= 1;                       // Отсчёт отавшихся вспышек
+                countdownRemainingFlashes -= 1;  // Отсчёт отавшихся вспышек
                 tvQuantity_1.setText(MessageFormat.format("{0}", countdownRemainingFlashes)); // Отсчёт отавшихся вспышек
                 b += 1;
                 if (b < i) {
@@ -144,6 +147,8 @@ public class StroboActivity extends AppCompatActivity {
                     btnStartStop_1.setText("Стоп");
                     countdownRemainingFlashes = quantityFlashes_1;
                     tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
+
+                    tvInfo_1.setText("Заданное количество вспышек");
                     seekBarQuantity1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
                 }
             }
