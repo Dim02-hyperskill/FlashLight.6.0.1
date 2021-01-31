@@ -3,7 +3,6 @@ package ru.adminrugraphics.flashlight;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.camera2.CameraAccessException;
@@ -32,7 +31,7 @@ public class StroboActivity extends AppCompatActivity {
     int quantityFlashes_1;
 
 
-    @SuppressLint("ClickableViewAccessibility")
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,8 +46,8 @@ public class StroboActivity extends AppCompatActivity {
         seekBarQuantity1 = findViewById(R.id.seek_bar_quantity_1);
         seekBarDuration_1 = findViewById(R.id.seek_bar_duration_1);
         seekBarFlash_1 = findViewById(R.id.seek_bar_flash_1);
-        tvQuantity_1 = findViewById(R.id.tV);
-        tvQuantity_1.setText("Непрерывно");
+        tvQuantity_1 = findViewById(R.id.tv_quantity_1);
+        tvQuantity_1.setText(getString(R.string.quantity_1));
         tvDurationPause_1 = findViewById(R.id.tv_duration_pause_1);
         tvDurationFlash_1 = findViewById(R.id.tv_duration_flash_1);
         tvInfo_1 = findViewById(R.id.tvInfo_1);
@@ -57,10 +56,10 @@ public class StroboActivity extends AppCompatActivity {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 quantityFlashes_1 = progress;
-                tvInfo_1.setText("Заданное количество вспшек");
+                tvInfo_1.setText(getString(R.string.number_of_flashes));
                 tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
                 if(quantityFlashes_1 == 0){
-                    tvQuantity_1.setText("Непрерывно");
+                    tvQuantity_1.setText(getString(R.string.quantity_1));
                 } else countdownRemainingFlashes = quantityFlashes_1; // для обратного отчета вспышек
             }
             @Override
@@ -127,7 +126,7 @@ public class StroboActivity extends AppCompatActivity {
         }
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+
     private void jop1() {
         handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
         btnStartStop_1.setBackgroundColor(GRAY);
@@ -148,14 +147,14 @@ public class StroboActivity extends AppCompatActivity {
                     countdownRemainingFlashes = quantityFlashes_1;
                     tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
 
-                    tvInfo_1.setText("Заданное количество вспышек");
+                    tvInfo_1.setText(getString(R.string.number_of_flashes));
                     seekBarQuantity1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
                 }
             }
         }, durationPause_1);
     }
 
-    @SuppressLint("ClickableViewAccessibility")
+
     public void onClick(View view) {
         //countdownRemainingFlashes = quantity_of_flashes_First; // для обратного отчета вспышек
         i = quantityFlashes_1;

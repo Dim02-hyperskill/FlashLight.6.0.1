@@ -29,6 +29,7 @@
     <string name="message_screen_lock"> Die Taschenlampe funktioniert, wenn der Bildschirm ausgeschaltet ist </string>
     <string name="duration_pause">Pausendauer </string>
     <string name="duration_flash">Blitzdauer </string>
+    <string name="number_of_flashes">Anzahl der Blitzen:</string>
 
 
     <string name="link">
@@ -44,5 +45,7 @@
          <![CDATA[<p> • Wenn die Option "Timerwert speichern" aktiviert ist, wird der aktuelle Timerwert beim Beenden der Anwendung automatisch gespeichert. </p>]]>
          <![CDATA[<p> </p>]]>
     </string>
+    <string name="quantity_1">endlos</string>
+
 
 </resources>

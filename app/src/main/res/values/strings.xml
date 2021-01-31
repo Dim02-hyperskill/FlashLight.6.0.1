@@ -29,7 +29,7 @@
     <string name="message_screen_lock">The flashlight will work when the screen is turned off</string>
     <string name="duration_pause">Pause duration </string>
     <string name="duration_flash">Flash duration</string>
-    <string name="test"><![CDATA[ TEXT IN BLACK <b><font color=#ff0000>TEXT IN RED</b>]]></string>
+    <string name="number_of_flashes">number of flashes:</string>
 
 
     <string name="link"><![CDATA[<a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Please rate the app.</a>]]></string>
@@ -42,6 +42,8 @@
          <![CDATA[<p> • When the \"Save timer value\" option is enabled, the current timer value will be automatically saved when you exit the application. </p>]]>
          <![CDATA[<p></p>]]>
     </string>
+
+    <string name="quantity_1">Infinitely</string>
 
 
 </resources>
