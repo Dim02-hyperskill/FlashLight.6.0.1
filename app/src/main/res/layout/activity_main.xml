@@ -212,7 +212,7 @@
         app:layout_constraintVertical_bias="0.306" />
 
     <ImageButton
-        android:id="@+id/imButStrobo"
+        android:id="@+id/ib_strobo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="#00000000"
@@ -226,8 +226,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.049"
-        app:srcCompat="@drawable/strobo"
-        tools:ignore="OnClick" />
+        app:srcCompat="@drawable/strobo" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

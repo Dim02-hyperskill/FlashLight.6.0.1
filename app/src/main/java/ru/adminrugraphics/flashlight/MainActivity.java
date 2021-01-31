@@ -54,6 +54,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         setContentView(R.layout.activity_main);
         sensorTouchButton = findViewById(R.id.ib_torch_tap);
         sensorTouchButton.setImageResource(R.drawable.tap);
