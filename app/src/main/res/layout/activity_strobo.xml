@@ -114,13 +114,13 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="0dp"
+        android:layout_marginTop="40dp"
         android:text="@string/number_of_flashes"
         android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.063"
         app:layout_constraintStart_toEndOf="@+id/btn_start_stop_1"
-        app:layout_constraintTop_toTopOf="@+id/btn_start_stop_1" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!--    <Button
