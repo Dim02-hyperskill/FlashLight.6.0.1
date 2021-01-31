@@ -17,8 +17,6 @@
     <string name="not_turn_is_locked"> Wenn sich der Bildschirm ausschaltet </string>
     <string name="not_turn_is_locked_summary"> Wenn sich der Bildschirm ausschaltet, schaltet sich die Taschenlampe nicht aus! </string>
     <string name="rate_the_application">Bewerten Sie die Anwendung</string>
-
-
     <string name="error_message"> Kamerablitz nicht verfügbar </string>
     <string name="not_turn_is_locked_img"> not_turn_is_locked </string>
     <string name="description_about"> \ ??? Beschreibung </string>
@@ -30,6 +28,8 @@
     <string name="duration_pause">Pausendauer </string>
     <string name="duration_flash">Blitzdauer </string>
     <string name="number_of_flashes">Anzahl der Blitzen:</string>
+    <string name="start_in_strobo">START</string>
+    <string name="stop_in_strobo">STOP</string>
 
 
     <string name="link">
@@ -46,6 +46,7 @@
          <![CDATA[<p> </p>]]>
     </string>
     <string name="quantity_1">endlos</string>
+    <string name="remaining_flashes">Verbleibende Blitze:</string>
 
 
 </resources>

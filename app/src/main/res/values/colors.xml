@@ -7,21 +7,10 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFF</color>
-
-
-
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#000000</color>
     <color name="colorAccent">#FF4081</color>
-
     <color name="colorPrimaryDarkMy">#a7a7a7</color>
-
-
     <color name="actionBar_background">#FF0000</color>
-
-
-    <color name="colorChaki">#587427</color>
-
-
-
+    <color name="colorKhaki">#587427</color>
 </resources>

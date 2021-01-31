@@ -16,8 +16,6 @@
     <string name="disable_screen_lock">Отключить блокировку экрана</string>
     <string name="not_turn_is_locked">При отключении экрана</string>
     <string name="not_turn_is_locked_summary">При отключении экрана фонарик не выключается!</string>
-
-
     <string name="error_message">Вспышка камеры недоступна</string>
     <string name="not_turn_is_locked_img">not_turn_is_locked</string>
     <string name="description_about">\??? Описание</string>
@@ -30,6 +28,8 @@
     <string name="duration_pause">продолжительность \nпаузы </string>
     <string name="duration_flash">продолжительность \nвспышки </string>
     <string name="number_of_flashes">количество вспышек:</string>
+    <string name="start_in_strobo">СТАРТ</string>
+    <string name="stop_in_strobo">СТОП</string>
 
 
     <string name="link">
@@ -50,6 +50,7 @@
          <![CDATA[<p></p>]]>
     </string>
     <string name="quantity_1">бесконечно</string>
+    <string name="remaining_flashes">Оставшиеся вспышки:</string>
 
 
 </resources>

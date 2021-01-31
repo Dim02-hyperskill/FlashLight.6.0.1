@@ -18,11 +18,8 @@
     <string name="not_turn_is_locked_summary">When the screen turns off, the flashlight does not turn off!</string>
     <string name="description_about">\???? Description</string>
     <string name="rate_the_application">Rate the application</string>
-
-
     <string name="not_turn_is_locked_img">not_turn_is_locked</string>
     <string name="arrows_rotate_img">arrows rotate image</string>
-
     <string name="toast_save_seconds">You saved the timer value:</string>
     <string name="sec"> sec</string>
     <string name="not_can_save">You can not save a \"0\" or blank value</string>
@@ -30,6 +27,8 @@
     <string name="duration_pause">Pause duration </string>
     <string name="duration_flash">Flash duration</string>
     <string name="number_of_flashes">number of flashes:</string>
+    <string name="start_in_strobo">START</string>
+    <string name="stop_in_strobo">STOP</string>
 
 
     <string name="link"><![CDATA[<a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Please rate the app.</a>]]></string>
@@ -44,6 +43,7 @@
     </string>
 
     <string name="quantity_1">Infinitely</string>
+    <string name="remaining_flashes">remaining flashes:</string>
 
 
 </resources>

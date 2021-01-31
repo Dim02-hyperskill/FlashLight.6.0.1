@@ -1,10 +1,13 @@
 package ru.adminrugraphics.flashlight;
 
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraManager;
 import android.os.Bundle;
@@ -26,7 +29,7 @@ public class StroboActivity extends AppCompatActivity {
     Handler handler;
     ImageButton imBtnSync;
     SeekBar seekBarQuantity1, seekBarDuration_1, seekBarFlash_1;
-    boolean sign1=true, markSync=true;
+    boolean sign1=true, markSync=true, isCameraFlash;
     int b = 0, i=0, countdownRemainingFlashes, durationPause_1 = 100, durationFlash_1 =100;
     int quantityFlashes_1;
 
@@ -39,10 +42,10 @@ public class StroboActivity extends AppCompatActivity {
 
         handler = new Handler();
         btnStartStop_1 = findViewById(R.id.btn_start_stop_1);
-        btnStartStop_1.setText("Start");
+        btnStartStop_1.setText(getString(R.string.start_in_strobo));
         btnStartStop_1.setBackgroundColor(GRAY);
         imBtnSync = findViewById(R.id.im_btn_sync);
-        imBtnSync.setColorFilter(getColor(R.color.colorChaki));
+        imBtnSync.setColorFilter(getColor(R.color.colorKhaki));
         seekBarQuantity1 = findViewById(R.id.seek_bar_quantity_1);
         seekBarDuration_1 = findViewById(R.id.seek_bar_duration_1);
         seekBarFlash_1 = findViewById(R.id.seek_bar_flash_1);
@@ -51,6 +54,18 @@ public class StroboActivity extends AppCompatActivity {
         tvDurationPause_1 = findViewById(R.id.tv_duration_pause_1);
         tvDurationFlash_1 = findViewById(R.id.tv_duration_flash_1);
         tvInfo_1 = findViewById(R.id.tvInfo_1);
+
+        // region проверка на наличие камеры   УДАЛИТЬ ПРИ РЕЛИЗЕ
+        isCameraFlash = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
+        if (!isCameraFlash) {
+            new AlertDialog.Builder( this)
+                    .setTitle(R.string. error_title )
+                    //.setMessage(R.string.error_title)
+                    .setPositiveButton(R.string. exit_message , (dialog, which) -> finish())
+                    .setIcon(android.R.drawable.ic_dialog_alert )
+                    .show();
+        }
+        // endregion
 
         seekBarQuantity1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -116,7 +131,7 @@ public class StroboActivity extends AppCompatActivity {
         if(i != -3){
             btnStartStop_1.setBackgroundColor(RED);
             turnOnFlash();
-            tvInfo_1.setText("Осталось");
+            tvInfo_1.setText(getString(R.string.remaining_flashes));
             handler.postDelayed(() -> {
                 jop1();
             }, durationFlash_1);
@@ -126,7 +141,7 @@ public class StroboActivity extends AppCompatActivity {
         }
     }
 
-
+    @SuppressLint("ClickableViewAccessibility")
     private void jop1() {
         handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
         btnStartStop_1.setBackgroundColor(GRAY);
@@ -143,7 +158,7 @@ public class StroboActivity extends AppCompatActivity {
                 } else {
                     b=0;
                     sign1 = true;
-                    btnStartStop_1.setText("Стоп");
+                    btnStartStop_1.setText(getString(R.string.stop_in_strobo));
                     countdownRemainingFlashes = quantityFlashes_1;
                     tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
 
@@ -155,6 +170,7 @@ public class StroboActivity extends AppCompatActivity {
     }
 
 
+    @SuppressLint("ClickableViewAccessibility")
     public void onClick(View view) {
         //countdownRemainingFlashes = quantity_of_flashes_First; // для обратного отчета вспышек
         i = quantityFlashes_1;
@@ -162,7 +178,7 @@ public class StroboActivity extends AppCompatActivity {
             seekBarQuantity1.setOnTouchListener((v, event) -> true); // отключает перемещение ползунка сикбара
             jop();
             sign1 = false;
-            btnStartStop_1.setText("Старт");
+            btnStartStop_1.setText(getString(R.string.start_in_strobo));
             if(i != 0){
                 if(countdownRemainingFlashes == quantityFlashes_1){
                     countdownRemainingFlashes -= 1;
@@ -175,7 +191,7 @@ public class StroboActivity extends AppCompatActivity {
             i = -3;
             handler.removeCallbacksAndMessages(null);
             sign1 = true;
-            btnStartStop_1.setText("Стоп");
+            btnStartStop_1.setText(getString(R.string.stop_in_strobo));
             btnStartStop_1.setBackgroundColor(GRAY);
             turnOffFlash();
         }
@@ -186,35 +202,37 @@ public class StroboActivity extends AppCompatActivity {
             markSync = false;
             imBtnSync.setColorFilter(GRAY);
         } else {
-            imBtnSync.setColorFilter(getColor(R.color.colorChaki));
+            imBtnSync.setColorFilter(getColor(R.color.colorKhaki));
             markSync = true;
         }
     }
 
 
-    //region Включение/отключение камеры
+    // region Включение/выключение камеры
     private void turnOnFlash() {
-        CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        String cameraId; // Usually back camera is at 0 position.
-        try {
-            cameraId = camManager.getCameraIdList()[0];
-            camManager.setTorchMode(cameraId, true);   //Turn ON
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
+        if (isCameraFlash){
+            CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            try {
+                String cameraId = camManager.getCameraIdList()[0];
+                camManager.setTorchMode(cameraId, true);   //Turn ON
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     private void turnOffFlash() {
-        CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
-        String cameraId; // Usually back camera is at 0 position.
-        try {
-            cameraId = camManager.getCameraIdList()[0];
-            camManager.setTorchMode(cameraId, false);   //Turn OFF
-        } catch (CameraAccessException e) {
-            e.printStackTrace();
+        if (isCameraFlash){
+            CameraManager camManager = (CameraManager) getSystemService(Context.CAMERA_SERVICE);
+            try {
+                String cameraId = camManager.getCameraIdList()[0];
+                camManager.setTorchMode(cameraId, false);   //Turn OFF
+            } catch (CameraAccessException e) {
+                e.printStackTrace();
+            }
         }
     }
-    //endregion
+    // endregion
 
 @Override
 protected void onDestroy() {

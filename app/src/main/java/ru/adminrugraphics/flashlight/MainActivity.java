@@ -1,6 +1,5 @@
 package ru.adminrugraphics.flashlight;
 
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
@@ -54,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         setContentView(R.layout.activity_main);
         sensorTouchButton = findViewById(R.id.ib_torch_tap);
@@ -242,7 +240,6 @@ public class MainActivity extends AppCompatActivity {
         edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
 
-
     //region Класс Таймера
     private class MyCountDownTimer extends CountDownTimer {
         MyCountDownTimer(long millisInFuture, long countDownInterval) {
@@ -279,7 +276,6 @@ public class MainActivity extends AppCompatActivity {
         }
 
         boolean flagKeepScreenOn = sp.getBoolean("key_keep_screen", true);
-
         if(flagKeepScreenOn) {  // Отключена блокировка экрана
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
