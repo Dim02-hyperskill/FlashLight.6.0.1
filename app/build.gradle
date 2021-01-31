@@ -40,8 +40,11 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     compileOnly 'com.google.android.wearable:wearable:2.8.1'
 
-    implementation platform('com.google.firebase:firebase-bom:26.3.0')
-    implementation 'com.google.firebase:firebase-analytics'
+    implementation platform('com.google.firebase:firebase-bom:26.3.0') // Это для чего-то гугл
+    implementation 'com.google.firebase:firebase-analytics'  // Это для чего-то гугл
+
+    def billing_version = "3.0.0" // Платёжка
+    implementation "com.android.billingclient:billing-ktx:$billing_version"  // Платёжка
 
 
 }

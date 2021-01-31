@@ -69,12 +69,8 @@ public class MainActivity extends AppCompatActivity {
         isTorchOn = sp.getBoolean("key_torch_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
 
-
         seconds = loadParam();
         edText.setText(MessageFormat.format("{0}", seconds));
-
-        // region Сохранение параметра
-        // endregion
 
         // region проверка на наличие камеры
         isCameraFlash = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -189,30 +185,27 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
-        edText.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                edText.clearFocus();
-                edText.setFocusableInTouchMode(false);
-                edText.setFocusable(false);
-                LayoutInflater inflater = getLayoutInflater();
-                View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
-                TextView text = (TextView) layout.findViewById(R.id.text);
-                if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
-                    text.setText(R.string.not_can_save);
-                } else {
-                    text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
-                    saveParams();
-                }
-                Toast toast = new Toast(getApplicationContext());
-                toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
-                toast.setGravity(Gravity.TOP, 0, 100);
-                toast.setDuration(Toast.LENGTH_LONG);
-                toast.setView(layout);
-                toast.show();
-                closeKeyboard();
-                return false;
+        edText.setOnLongClickListener((View.OnLongClickListener) v -> {
+            edText.clearFocus();
+            edText.setFocusableInTouchMode(false);
+            edText.setFocusable(false);
+            LayoutInflater inflater = getLayoutInflater();
+            View layout = inflater.inflate(R.layout.toast_save_value_second, (ViewGroup) findViewById(R.id.id_toast_save_value));
+            TextView text = (TextView) layout.findViewById(R.id.text);
+            if (edText.getText().toString().equals("") || edText.getText().toString().equals("0")){
+                text.setText(R.string.not_can_save);
+            } else {
+                text.setText(format("%s\n%d %s", getResources().getString(R.string.toast_save_seconds), seconds, getResources().getString(R.string.sec)));
+                saveParams();
             }
+            Toast toast = new Toast(getApplicationContext());
+            toast.setGravity(Gravity.CENTER_HORIZONTAL, 0, 0);
+            toast.setGravity(Gravity.TOP, 0, 100);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.setView(layout);
+            toast.show();
+            closeKeyboard();
+            return false;
         });
     }
 
@@ -249,7 +242,6 @@ public class MainActivity extends AppCompatActivity {
         edText.setFocusableInTouchMode(true); // Это разрешает фокус и ввод снова
         edText.setFocusable(true);// Это тоже разрешает фокус и ввод снова
     }
-
 
 
     //region Класс Таймера
@@ -308,7 +300,6 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         blockOff = sp.getBoolean("key_block_off", false);
         if(!blockOff) turnOffFlash();
-       // myCountDownTimer.cancel();
     }
 
     @Override
@@ -409,8 +400,6 @@ public class MainActivity extends AppCompatActivity {
         //  edText.setFocusable(false);
         //  edText.setFocusableInTouchMode(true);
         //  edText.setFocusable(true);
-
-
     }
     //endregion
 

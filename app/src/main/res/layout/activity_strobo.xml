@@ -1,226 +1,129 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
-    tools:context=".StroboActivity">
+    tools:context=".StroboActivity"
+    android:background="@drawable/flash_background">
 
 
-
-
-    <LinearLayout
-        android:id="@+id/LLVer1"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_start_stop_1"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="16dp"
+        android:onClick="onClick"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.146"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/top"
-            android:layout_width="match_parent"
-            android:layout_height="30pt"
-            android:orientation="vertical">
-        </LinearLayout>
+    <SeekBar
+        android:id="@+id/seek_bar_quantity_1"
+        android:thumb="@drawable/seekbar_thumb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:thumbTint="#a00"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.165" />
 
-        <LinearLayout
-            android:id="@+id/first_block"
-            android:layout_width="match_parent"
+
+    <SeekBar
+        android:id="@+id/seek_bar_duration_1"
+        android:thumb="@drawable/seekbar_thumb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:max="100"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_duration_pause_1" />
+
+    <SeekBar
+        android:id="@+id/seek_bar_flash_1"
+        android:thumb="@drawable/seekbar_thumb"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:max="100"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_duration_flash_1"
+        app:layout_constraintVertical_bias="0.027" />
+
+    <TextView
+        android:id="@+id/tV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_start_stop_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.266"
+        app:layout_constraintStart_toEndOf="@+id/btn_start_stop_1"
+        app:layout_constraintTop_toTopOf="@+id/btn_start_stop_1"
+        app:layout_constraintVertical_bias="0.448" />
+
+    <TextView
+        android:id="@+id/tv_duration_pause_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.097"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar_flash_1" />
+
+    <TextView
+        android:id="@+id/tv_duration_flash_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar_quantity_1" />
+
+    <ImageButton
+        android:id="@+id/im_btn_sync"
+        android:layout_width="44dp"
+        android:layout_height="61dp"
+        android:onClick="onClickSync"
+        android:background="#00000000"
+        android:scaleX="0.7"
+        android:scaleY="0.7"
+        app:layout_constraintBottom_toTopOf="@+id/seek_bar_duration_1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.88"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seek_bar_flash_1"
+        app:layout_constraintVertical_bias="0.466"
+        app:srcCompat="@drawable/link"
+        android:contentDescription="@string/app_name"
+        />
+
+
+    <!--    <Button
+            android:id="@+id/btn_sync"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/cardview_dark_background"
-            android:orientation="vertical">
+            android:onClick="onClickSync"
+            android:paddingStart="10dp"
+            android:paddingEnd="40dp"
+            android:text="Синх. ползунки"
+            app:layout_constraintBottom_toTopOf="@+id/seek_bar_duration_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.745"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/seek_bar_flash_1"
+            app:layout_constraintVertical_bias="0.441" />-->
 
-            <LinearLayout
-                android:id="@+id/LLhor1"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="vertical">
-
-                <EditText
-                    android:id="@+id/edText1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0"
-                    android:backgroundTint="#00000000"
-                    android:ems="5"
-                    android:gravity="center"
-                    android:importantForAutofill="no"
-                    android:inputType="number|numberDecimal"
-                    android:maxLength="5"
-                    tools:ignore="LabelFor" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LLhor2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <SeekBar
-                    android:id="@+id/seekBar2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="3" />
-
-                <EditText
-                    android:id="@+id/edText2"
-                    android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0"
-                    android:backgroundTint="#00000000"
-                    android:ems="2"
-                    android:importantForAutofill="no"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    tools:ignore="LabelFor" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LLhor3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <SeekBar
-                    android:id="@+id/seekBar3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="3" />
-
-                <EditText
-                    android:id="@+id/edText3"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0"
-                    android:ems="2"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    tools:ignore="Autofill,LabelFor" />
-
-            </LinearLayout>
-        </LinearLayout>
-
-
-
-    <LinearLayout
-        android:id="@+id/between"
-        android:layout_width="match_parent"
-        android:layout_height="30pt"
-        android:orientation="vertical">
-    </LinearLayout>
-
-
-
-        <LinearLayout
-            android:id="@+id/second_block"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/cardview_dark_background"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:id="@+id/LLhor4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <SeekBar
-                    android:id="@+id/seekBarSecond1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="3" />
-
-
-                <EditText
-                    android:id="@+id/edTextSecond1"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0"
-                    android:ems="2"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    tools:ignore="LabelFor" />
-
-            </LinearLayout>
-
-            <LinearLayout
-
-                android:id="@+id/LLhor5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <SeekBar
-                    android:id="@+id/seekBarSecond2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="3" />
-
-                <EditText
-                    android:id="@+id/edTextSecond2"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0"
-                    android:ems="2"
-                    android:inputType="number"
-                    android:maxLength="2"
-                    android:importantForAutofill="no" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/LLhor6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <SeekBar
-                    android:id="@+id/seekBarSecond3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_weight="3" />
-
-                <EditText
-                    android:id="@+id/edTextSecond3"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_weight="0"
-                    android:ems="2"
-                    android:inputType="number"
-                    android:maxLength="2" />
-            </LinearLayout>
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:id="@+id/LLhor7"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/btn1"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_margin="20dp"
-                android:layout_weight="1"
-                android:onClick="onClickBtn1" />
-
-        </LinearLayout>
-
-
-    </LinearLayout>
-
-
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,8 @@
     <string name="not_can_save">Нельзя сохранить \"0\" или пустое значение</string>
     <string name="message_screen_lock">Фонарик будет работать при выключенном экране</string>
     <string name="rate_the_application">Поставить оценку приложению </string>
+    <string name="duration_pause">Продолжительность \nпаузы: </string>
+    <string name="duration_flash">продолжительность \nвспышки</string>
 
 
     <string name="link">
@@ -46,5 +48,6 @@
          <![CDATA[<p>• При включенной опции \"Сохранять значение таймера\", текущее значение таймера автоматически сохранится при выходе из приложения.</p>]]>
          <![CDATA[<p></p>]]>
     </string>
+
 
 </resources>
