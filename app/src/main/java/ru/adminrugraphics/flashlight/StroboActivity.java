@@ -1,6 +1,5 @@
 package ru.adminrugraphics.flashlight;
 
-
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -22,7 +21,6 @@ import java.text.MessageFormat;
 
 import static android.graphics.Color.*;
 
-
 public class StroboActivity extends AppCompatActivity {
     TextView tvQuantity_1, tvDurationPause_1, tvDurationFlash_1, tvInfo_1;
     Button btnStartStop_1;
@@ -30,10 +28,7 @@ public class StroboActivity extends AppCompatActivity {
     ImageButton imBtnSync;
     SeekBar seekBarQuantity1, seekBarDuration_1, seekBarFlash_1;
     boolean sign1=true, markSync=true, isCameraFlash;
-    int b = 0, i=0, countdownRemainingFlashes, durationPause_1 = 100, durationFlash_1 =100;
-    int quantityFlashes_1;
-
-
+    int b = 0, i=0, countdownRemainingFlashes, durationPause_1 = 100, durationFlash_1 =100, quantityFlashes_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -206,7 +201,6 @@ public class StroboActivity extends AppCompatActivity {
             markSync = true;
         }
     }
-
 
     // region Включение/выключение камеры
     private void turnOnFlash() {

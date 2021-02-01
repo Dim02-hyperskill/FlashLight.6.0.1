@@ -50,12 +50,12 @@
 
     <SeekBar
         android:id="@+id/seek_bar_duration_1"
-        android:thumbTint="@color/colorPrimaryDarkMy"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="2dp"
         android:max="100"
         android:thumb="@drawable/seekbar_thumb"
+        android:thumbTint="@color/colorPrimaryDarkMy"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -77,7 +77,7 @@
         android:id="@+id/tv_duration_pause_1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="25dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.018"
         app:layout_constraintStart_toStartOf="@+id/tv_duration_flash_1"
@@ -96,8 +96,11 @@
         android:id="@+id/im_btn_sync"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="onClickSync"
         android:background="#00000000"
+        android:contentDescription="@string/app_name"
+        android:onClick="onClickSync"
+        android:paddingStart="40dp"
+        android:paddingEnd="20dp"
         android:scaleX="0.5"
         android:scaleY="0.5"
         app:layout_constraintBottom_toTopOf="@+id/seek_bar_duration_1"
@@ -106,8 +109,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/seek_bar_flash_1"
         app:layout_constraintVertical_bias="0.5"
-        app:srcCompat="@drawable/link"
-        android:contentDescription="@string/app_name"/>
+        app:srcCompat="@drawable/link" />
 
     <TextView
         android:id="@+id/tvInfo_1"
