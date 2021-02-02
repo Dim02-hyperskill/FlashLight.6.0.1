@@ -25,10 +25,10 @@ public class StroboActivity extends AppCompatActivity {
     TextView tvQuantity_1, tvDurationPause_1, tvDurationFlash_1, tvInfo_1;
     Button btnStartStop_1;
     Handler handler;
-    ImageButton imBtnSync;
-    SeekBar seekBarQuantity1, seekBarDuration_1, seekBarFlash_1;
-    boolean sign1=true, markSync=true, isCameraFlash;
-    int b = 0, i=0, countdownRemainingFlashes, durationPause_1 = 100, durationFlash_1 =100, quantityFlashes_1;
+    ImageButton imBtnSync_1, imBtnArrow;
+    SeekBar seekBarQuantity_1, seekBarDuration_1, seekBarFlash_1;
+    boolean sign1=true, markSync_1 =true, markArrow=true, isCameraFlash;
+    int b = 0, i=0, countdownRemainingFlashes_1, durationPause_1 = 100, durationFlash_1 =100, quantityFlashes_1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,9 +39,10 @@ public class StroboActivity extends AppCompatActivity {
         btnStartStop_1 = findViewById(R.id.btn_start_stop_1);
         btnStartStop_1.setText(getString(R.string.start_in_strobo));
         btnStartStop_1.setBackgroundColor(GRAY);
-        imBtnSync = findViewById(R.id.im_btn_sync);
-        imBtnSync.setColorFilter(getColor(R.color.colorKhaki));
-        seekBarQuantity1 = findViewById(R.id.seek_bar_quantity_1);
+        imBtnSync_1 = findViewById(R.id.im_btn_sync_1);
+        imBtnSync_1.setColorFilter(getColor(R.color.colorKhaki));
+        imBtnArrow = findViewById(R.id.ib_arrow);
+        seekBarQuantity_1 = findViewById(R.id.seek_bar_quantity_1);
         seekBarDuration_1 = findViewById(R.id.seek_bar_duration_1);
         seekBarFlash_1 = findViewById(R.id.seek_bar_flash_1);
         tvQuantity_1 = findViewById(R.id.tv_quantity_1);
@@ -52,25 +53,17 @@ public class StroboActivity extends AppCompatActivity {
 
         // region проверка на наличие камеры   УДАЛИТЬ ПРИ РЕЛИЗЕ
         isCameraFlash = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
-        if (!isCameraFlash) {
-            new AlertDialog.Builder( this)
-                    .setTitle(R.string. error_title )
-                    //.setMessage(R.string.error_title)
-                    .setPositiveButton(R.string. exit_message , (dialog, which) -> finish())
-                    .setIcon(android.R.drawable.ic_dialog_alert )
-                    .show();
-        }
+        if (!isCameraFlash) {new AlertDialog.Builder( this).setTitle(R.string. error_title ).setPositiveButton(R.string. exit_message , (dialog, which) -> finish()).setIcon(android.R.drawable.ic_dialog_alert ).show();}
         // endregion
 
-        seekBarQuantity1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        seekBarQuantity_1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 quantityFlashes_1 = progress;
                 tvInfo_1.setText(getString(R.string.number_of_flashes));
                 tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
-                if(quantityFlashes_1 == 0){
-                    tvQuantity_1.setText(getString(R.string.quantity_1));
-                } else countdownRemainingFlashes = quantityFlashes_1; // для обратного отчета вспышек
+                if(quantityFlashes_1 == 0) tvQuantity_1.setText(getString(R.string.quantity_1));
+                else countdownRemainingFlashes_1 = quantityFlashes_1; // для обратного отчета вспышек
             }
             @Override
             public void onStartTrackingTouch(SeekBar seekBar) { }
@@ -84,11 +77,8 @@ public class StroboActivity extends AppCompatActivity {
         seekBarDuration_1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                double q = seekBarQuantity1.getMax();
-                if(markSync){
-                    seekBarFlash_1.setProgress(progress);
-                }
-                progress = (int) (((progress * progress) / (q * q)) * (q - 1) + 1);
+                if(markSync_1) seekBarFlash_1.setProgress(progress);
+                progress = (int) (((progress * progress) / (100.0f * 100.0f)) * (100 - 1) + 1);
                 double ccc = progress/10.0;
                 String c = String.valueOf(ccc);
                 tvDurationPause_1.setText(MessageFormat.format("{0} {1} {2}", getString(R.string.duration_pause), c, getString(R.string.sec)));
@@ -106,11 +96,10 @@ public class StroboActivity extends AppCompatActivity {
         seekBarFlash_1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                if(markSync){
-                    seekBarDuration_1.setProgress(progress);
-                }
-                progress = (int) (((progress * progress) / (99.0f * 99.0f)) * (99 - 1) + 1); // Approximate an exponential curve with x^2
-                double c = progress/10.0;
+                if(markSync_1) seekBarDuration_1.setProgress(progress);
+                progress = (int) (((progress * progress) / (100.0f * 100.0f)) * (100 - 1) + 1); // Approximate an exponential curve with x^2
+                double ca = progress/10.0;
+                String c = String.valueOf(ca);
                 tvDurationFlash_1.setText(MessageFormat.format("{0} {1} {2}", getString(R.string.duration_flash), c, getString(R.string.sec)));
                 durationFlash_1 = progress * 100;
             }
@@ -119,17 +108,22 @@ public class StroboActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {  }
         });
-    }
 
-    private void jop() {
+
+        // region ВТОРАЯ ГРУППА СИКБАРОВ
+
+        // endregion
+
+
+}
+
+    private void jop_first_1() {
         handler.removeCallbacksAndMessages(null);
         if(i != -3){
             btnStartStop_1.setBackgroundColor(RED);
             turnOnFlash();
             tvInfo_1.setText(getString(R.string.remaining_flashes));
-            handler.postDelayed(() -> {
-                jop1();
-            }, durationFlash_1);
+            handler.postDelayed(this::jop_second_1, durationFlash_1);
         } else {
             btnStartStop_1.setBackgroundColor(GRAY);
             turnOffFlash();
@@ -137,52 +131,48 @@ public class StroboActivity extends AppCompatActivity {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    private void jop1() {
+    private void jop_second_1() {
         handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
         btnStartStop_1.setBackgroundColor(GRAY);
         turnOffFlash();
         handler.postDelayed(() -> {
             if(i == 0){
-                jop();
+                jop_first_1();
             } else {
-                countdownRemainingFlashes -= 1;  // Отсчёт отавшихся вспышек
-                tvQuantity_1.setText(MessageFormat.format("{0}", countdownRemainingFlashes)); // Отсчёт отавшихся вспышек
+                countdownRemainingFlashes_1 -= 1;  // Отсчёт отавшихся вспышек
+                tvQuantity_1.setText(MessageFormat.format("{0}", countdownRemainingFlashes_1)); // Отсчёт отавшихся вспышек
                 b += 1;
                 if (b < i) {
-                    jop();
+                    jop_first_1();
                 } else {
                     b=0;
                     sign1 = true;
                     btnStartStop_1.setText(getString(R.string.stop_in_strobo));
-                    countdownRemainingFlashes = quantityFlashes_1;
+                    countdownRemainingFlashes_1 = quantityFlashes_1;
                     tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
-
                     tvInfo_1.setText(getString(R.string.number_of_flashes));
-                    seekBarQuantity1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
+                    seekBarQuantity_1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
                 }
             }
         }, durationPause_1);
     }
-
 
     @SuppressLint("ClickableViewAccessibility")
     public void onClick(View view) {
         //countdownRemainingFlashes = quantity_of_flashes_First; // для обратного отчета вспышек
         i = quantityFlashes_1;
         if (sign1){
-            seekBarQuantity1.setOnTouchListener((v, event) -> true); // отключает перемещение ползунка сикбара
-            jop();
+            seekBarQuantity_1.setOnTouchListener((v, event) -> true); // отключает перемещение ползунка сикбара
+            jop_first_1();
             sign1 = false;
             btnStartStop_1.setText(getString(R.string.start_in_strobo));
             if(i != 0){
-                if(countdownRemainingFlashes == quantityFlashes_1){
-                    countdownRemainingFlashes -= 1;
-                }
-                tvQuantity_1.setText(MessageFormat.format("{0}", countdownRemainingFlashes));
+                if(countdownRemainingFlashes_1 == quantityFlashes_1) countdownRemainingFlashes_1 -= 1;
+                tvQuantity_1.setText(MessageFormat.format("{0}", countdownRemainingFlashes_1));
             }
         } else {
-            seekBarQuantity1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
-            seekBarQuantity1.setEnabled(true);
+            seekBarQuantity_1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
+            seekBarQuantity_1.setEnabled(true);
             i = -3;
             handler.removeCallbacksAndMessages(null);
             sign1 = true;
@@ -193,12 +183,12 @@ public class StroboActivity extends AppCompatActivity {
     }
 
     public void onClickSync(View view) {
-        if(markSync){
-            markSync = false;
-            imBtnSync.setColorFilter(GRAY);
+        if(markSync_1){
+            markSync_1 = false;
+            imBtnSync_1.setColorFilter(GRAY);
         } else {
-            imBtnSync.setColorFilter(getColor(R.color.colorKhaki));
-            markSync = true;
+            imBtnSync_1.setColorFilter(getColor(R.color.colorKhaki));
+            markSync_1 = true;
         }
     }
 
@@ -228,24 +218,31 @@ public class StroboActivity extends AppCompatActivity {
     }
     // endregion
 
-@Override
-protected void onDestroy() {
-        super.onDestroy();
-        turnOffFlash();
-        handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
+    @Override
+    protected void onDestroy() {
+            super.onDestroy();
+            turnOffFlash();
+            handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
+            }
+
+    @Override  // Возврат на предыдущую активити через кнпку "назад"
+    public void onBackPressed() {
+            super.onBackPressed();
+            turnOffFlash();
+            handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
+            finish();
+            }
+
+    public void onClickImBtnArrow(View view) {
+        if (markArrow){
+            btnStartStop_1.setText("ХУЙ");
+            markArrow = false;
+        } else {
+            btnStartStop_1.setText("неХУЙ");
+            markArrow = true;
         }
 
-
-@Override  // Возврат на предыдущую активити через кнпку "назад"
-public void onBackPressed() {
-        super.onBackPressed();
-        turnOffFlash();
-        handler.removeCallbacksAndMessages(null); // Это закрывает postDelayed(()
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-        finish();
-        }
-
-
-
+    }
 }
