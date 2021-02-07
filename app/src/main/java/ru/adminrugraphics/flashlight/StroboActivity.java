@@ -152,6 +152,8 @@ public class StroboActivity extends AppCompatActivity {
                     tvQuantity_1.setText(MessageFormat.format("{0}", quantityFlashes_1));
                     tvInfo_1.setText(getString(R.string.number_of_flashes));
                     seekBarQuantity_1.setOnTouchListener((v, event) -> false); // Включает перемещение полунка сикбара
+                        // Изменение цвета стрелки при конце заданного количества вспышек
+                    imBtnArrow.setColorFilter(getColor(R.color.colorKhaki)); // Изменение цвета при конце заданного количества вспышек
                 }
             }
         }, durationPause_1);
