@@ -115,7 +115,7 @@ public class StroboActivity extends AppCompatActivity {
         // endregion
 
 
-}
+    }
 
     private void jop_first_1() {
         handler.removeCallbacksAndMessages(null);

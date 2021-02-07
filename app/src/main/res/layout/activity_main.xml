@@ -12,20 +12,24 @@
 
     <LinearLayout
         android:focusable="true"
+        android:background="#00000000"
+        style="none"
+        android:id="@+id/ll_001"
         android:focusableInTouchMode="true"
         android:layout_width="1dp"
         android:layout_height="1dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.039"
+        app:layout_constraintHorizontal_bias="0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.008" />
+        app:layout_constraintVertical_bias="0" />
 
 
     <EditText
         android:id="@+id/edText"
+        android:autofillHints="none"
         android:layout_width="88dp"
         android:layout_height="57dp"
         android:layout_marginStart="20dp"
@@ -128,6 +132,7 @@
 
     <TextView
         android:id="@+id/tv_bat_tint"
+        android:fontFamily="@font/roboto"
         android:layout_width="wrap_content"
         android:layout_height="19dp"
         android:layout_marginStart="28dp"
@@ -201,15 +206,15 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="44dp"
+        android:fontFamily="@font/roboto"
         android:text="@string/timer"
         android:textColor="@color/white"
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.306" />
+        app:layout_constraintVertical_bias="0.308" />
 
     <ImageButton
         android:id="@+id/ib_strobo"
@@ -222,10 +227,10 @@
         android:scaleY="0.5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintHorizontal_bias="0.782"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.049"
+        app:layout_constraintVertical_bias="0.019"
         app:srcCompat="@drawable/strobo" />
 
 
