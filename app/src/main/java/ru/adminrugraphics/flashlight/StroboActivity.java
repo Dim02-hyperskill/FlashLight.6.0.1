@@ -42,7 +42,7 @@ public class StroboActivity extends AppCompatActivity {
         btnStartStop_1.setBackgroundColor(GRAY);
         imBtnSync_1 = findViewById(R.id.im_btn_sync_1);
         imBtnSync_1.setColorFilter(getColor(R.color.colorKhaki));
-        imBtnArrow = findViewById(R.id.ib_arrow);   // Этот элемент кнопка - стрелка) скрыт
+        imBtnArrow = findViewById(R.id.ib_arrow);   // Этот элемент (кнопка - стрелка) скрыт
         seekBarQuantity_1 = findViewById(R.id.seek_bar_quantity_1);
         seekBarDuration_1 = findViewById(R.id.seek_bar_duration_1);
         seekBarFlash_1 = findViewById(R.id.seek_bar_flash_1);
