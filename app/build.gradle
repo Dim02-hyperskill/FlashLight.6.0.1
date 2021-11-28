@@ -13,8 +13,8 @@ android {
         applicationId "ru.adminrugraphics.flashlight"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 22
-        versionName "5.1.0"
+        versionCode 23
+        versionName "6.1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 

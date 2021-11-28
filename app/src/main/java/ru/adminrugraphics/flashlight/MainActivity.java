@@ -65,7 +65,6 @@ public class MainActivity extends AppCompatActivity {
         edText = findViewById(R.id.edText);
         isTorchOn = sp.getBoolean("key_torch_on", false);
         //seconds = Integer.parseInt(sp.getString("key_second", "33"));
-
         seconds = loadParam();
         edText.setText(MessageFormat.format("{0}", seconds));
 
@@ -182,6 +181,7 @@ public class MainActivity extends AppCompatActivity {
         });
         //endregion
 
+        //region Отработка длинного нажатия в Toast
         edText.setOnLongClickListener(v -> {
             edText.clearFocus();
             edText.setFocusableInTouchMode(false);
@@ -204,6 +204,7 @@ public class MainActivity extends AppCompatActivity {
             closeKeyboard();
             return false;
         });
+        //endregion
     }
 
     void saveParams() {

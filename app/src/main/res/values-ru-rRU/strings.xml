@@ -23,7 +23,7 @@
     <string name="toast_save_seconds">Вы сохранили значение таймера:</string>
     <string name="sec"> сек</string>
     <string name="not_can_save">Нельзя сохранить \"0\" или пустое значение</string>
-    <string name="message_screen_lock">Фонарик будет работать при выключенном экране</string>
+    <string name="message_screen_lock">Фонарик будет работать при выключенном экране. Вы можете отключмть эту опцию в настройках.</string>
     <string name="rate_the_application">Поставить оценку приложению </string>
     <string name="duration_pause">продолжительность \nпаузы </string>
     <string name="duration_flash">продолжительность \nвспышки </string>
@@ -33,8 +33,6 @@
 
 
     <string name="link">
-
-    <![CDATA[<p><a href="https://rugraphics.ru/photoshop/fonarik-dlya-smatrfona-android">Ссылка на описание приложения.</a></p>]]>
 
      <![CDATA[<p><a href="https://play.google.com/store/apps/details?id=ru.adminrugraphics.flashlight">Пожалуйста, оцените приложение</a></p>]]>
 

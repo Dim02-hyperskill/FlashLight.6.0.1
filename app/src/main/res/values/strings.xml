@@ -23,7 +23,7 @@
     <string name="toast_save_seconds">You saved the timer value:</string>
     <string name="sec"> sec</string>
     <string name="not_can_save">You can not save a \"0\" or blank value</string>
-    <string name="message_screen_lock">The flashlight will work when the screen is turned off</string>
+    <string name="message_screen_lock">The flashlight will work when the screen is turned off. You can disable this option in the settings.</string>
     <string name="duration_pause">Pause duration </string>
     <string name="duration_flash">Flash duration</string>
     <string name="number_of_flashes">number of flashes:</string>

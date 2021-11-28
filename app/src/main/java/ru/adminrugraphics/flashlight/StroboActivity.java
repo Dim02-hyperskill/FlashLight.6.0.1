@@ -35,13 +35,14 @@ public class StroboActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_strobo);
 
+        //region находим все объекты по ID
         handler = new Handler();
         btnStartStop_1 = findViewById(R.id.btn_start_stop_1);
         btnStartStop_1.setText(getString(R.string.start_in_strobo));
         btnStartStop_1.setBackgroundColor(GRAY);
         imBtnSync_1 = findViewById(R.id.im_btn_sync_1);
         imBtnSync_1.setColorFilter(getColor(R.color.colorKhaki));
-        imBtnArrow = findViewById(R.id.ib_arrow);
+        imBtnArrow = findViewById(R.id.ib_arrow);   // Этот элемент 9кнопка - стрелка) скрыт
         seekBarQuantity_1 = findViewById(R.id.seek_bar_quantity_1);
         seekBarDuration_1 = findViewById(R.id.seek_bar_duration_1);
         seekBarFlash_1 = findViewById(R.id.seek_bar_flash_1);
@@ -50,6 +51,7 @@ public class StroboActivity extends AppCompatActivity {
         tvDurationPause_1 = findViewById(R.id.tv_duration_pause_1);
         tvDurationFlash_1 = findViewById(R.id.tv_duration_flash_1);
         tvInfo_1 = findViewById(R.id.tvInfo_1);
+        //endregion
 
         // region проверка на наличие камеры   УДАЛИТЬ ПРИ РЕЛИЗЕ
         isCameraFlash = getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA_FLASH);
@@ -237,7 +239,7 @@ public class StroboActivity extends AppCompatActivity {
             finish();
             }
 
-    public void onClickImBtnArrow(View view) {
+    public void onClickImBtnArrow(View view) {     // Этот элемент 9кнопка - стрелка) скрыт
         if (markArrow){
             btnStartStop_1.setText("ХУЙ");
             markArrow = false;
@@ -245,6 +247,5 @@ public class StroboActivity extends AppCompatActivity {
             btnStartStop_1.setText("неХУЙ");
             markArrow = true;
         }
-
     }
 }
