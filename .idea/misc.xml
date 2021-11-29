@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Andrroid_Project_Git/FlashLight-6/app/src/main/res/drawable/screen_background.xml" value="0.2712820512820513" />
         <entry key="..\:/Andrroid_Project_Git/FlashLight-6/app/src/main/res/layout/activity_main.xml" value="0.15307971014492755" />
         <entry key="..\:/Andrroid_Project_Git/FlashLight-6/app/src/main/res/layout/activity_strobo.xml" value="0.15307971014492755" />
+        <entry key="..\:/Andrroid_Project_Git/FlashLight-6/app/src/main/res/layout/widget.xml" value="0.259375" />
       </map>
     </option>
   </component>

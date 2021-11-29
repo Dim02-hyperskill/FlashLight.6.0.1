@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ru.adminrugraphics.flashlight">
 
     <uses-permission android:name="android.permission.CAMERA" />
@@ -28,7 +29,7 @@
 
 
         <activity android:name=".PrefActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="fullSensor"/>
 
         <activity android:name=".RotateActivity"
             android:theme="@style/myThemeRotate"/>
@@ -40,9 +41,8 @@
             android:screenOrientation="portrait"/>
 
         <activity android:name=".StroboActivity"
-            android:screenOrientation="portrait"/>
-
-
+            android:screenOrientation="nosensor"/>
     </application>
+
 
 </manifest>

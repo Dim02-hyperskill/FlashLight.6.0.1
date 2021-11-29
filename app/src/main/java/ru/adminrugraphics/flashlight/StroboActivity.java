@@ -113,7 +113,6 @@ public class StroboActivity extends AppCompatActivity {
 
 
         // region ВТОРАЯ ГРУППА СИКБАРОВ
-
         // endregion
 
 
